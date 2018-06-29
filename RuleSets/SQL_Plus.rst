@@ -1,0 +1,18 @@
+<RULESET title="SQL*Plus Best Practices" version="11.0">
+<PROPERTIES>
+<SUMMARY>
+<RULESET_TYPE>Quest</RULESET_TYPE>
+<AUTHOR>Quest Software</AUTHOR>
+<CREATED>38447.6800555208</CREATED>
+<MODIFIED>38447.6803373032</MODIFIED>
+<COMMENTS>Rules in this set identify methods to improve your SQL*Plus scripting.</COMMENTS>
+<RULESET_TOTAL>51</RULESET_TOTAL>
+</SUMMARY>
+</PROPERTIES>
+  <RULEFILTER>
+    <CATEGORY cat="60" />
+  </RULEFILTER>
+  <RULES>
+    <RULE rid="*" />
+  </RULES>
+</RULESET>

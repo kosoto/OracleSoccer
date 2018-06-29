@@ -1,0 +1,71 @@
+﻿Category: 스키마 보고서
+Name: 사용자 할당량 상세내역 - 10g 이후
+ReportDefFileName: .\UserTablespaceQuotas.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT * FROM 
+( SELECT tablespace_name, username,
+  ROUND(bytes / 1048576) bytes,
+  ROUND(max_bytes / 1048576) max_bytes,
+  blocks,
+  max_blocks,
+  dropped
+  FROM   dba_ts_quotas
+  WHERE  username IN (:other_users)) tsq,
+( SELECT grantee username, DECODE(COUNT(*), 0, 'NO', 'YES') has_unl_ts
+  FROM   dba_sys_privs
+  WHERE  PRIVILEGE = 'UNLIMITED TABLESPACE'
+  AND    (GRANTEE = :me OR GRANTEE IN (:other_users))
+  GROUP BY grantee) sp
+WHERE sp.username = tsq.username (+)
+order by 1
+===End SQL===
+ParamName: me
+ParamType: Current Schema
+ParamValue: 
+ParamExp: 
+ParamName: other_users
+ParamType: Schema List
+ParamValue: 
+ParamExp: 
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38645.3974511458" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6942017014" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C7A000000204E616D653D225469746C652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C7B000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C8F000000204E616D653D2247726F7570206865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D22382200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C8F000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D22342200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="사용자 테이블스페이스 할당량 보고서"/>
+    </TfrxReportTitle>
+    <TfrxPageHeader Name="PageHeader1" Height="22.67718" Left="0" Top="68.03154" Width="740.409927"/>
+    <TfrxGroupHeader Name="GroupHeader1" Height="22.67718" Left="0" Top="151.1812" Width="740.409927" Condition="Master.&#34;USERNAME_1&#34;" OutlineText="&#60;Master.&#34;USERNAME_1&#34;&#62;;">
+      <TfrxMemoView Name="Memo10" Align="baRight" Left="298.58287" Top="0" Width="441.827057" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="536870911" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="무제한 테이블스페이스 있음:  [Master.&#34;HAS_UNL_TS&#34;]"/>
+      <TfrxMemoView Name="Memo21" Align="baLeft" Left="0" Top="0" Width="298.204917" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="536870911" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="사용자 이름:  [Master.&#34;USERNAME_1&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Height="18.89765" Left="0" Top="264.5671" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" RowCount="0">
+      <TfrxMemoView Name="Memo11" Left="0" Top="0" Width="188.75345017" Height="18.89765" DataField="TABLESPACE_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;TABLESPACE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="224.13606128" Top="0" Width="80.47397471" Height="18.89765" DataField="BYTES" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;BYTES&#34;]"/>
+      <TfrxMemoView Name="Memo14" Left="323.527559055118" Top="0" Width="107.716535433071" Height="18.89765" DataField="MAX_BYTES" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;MAX_BYTES&#34;]"/>
+      <TfrxMemoView Name="Memo15" Left="446.30298599" Top="0" Width="83.1496062992126" Height="18.89765" DataField="BLOCKS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;BLOCKS&#34;]"/>
+      <TfrxMemoView Name="Memo16" Left="546.95273882" Top="0" Width="102.047244094488" Height="18.89765" DataField="MAX_BLOCKS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;MAX_BLOCKS&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="670.40944882" Top="0" Width="70" Height="18.89765" DataField="DROPPED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haCenter" ParentFont="False" Style="Data" Text="[Master.&#34;DROPPED&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupFooter Name="GroupFooter1" Height="11.33859" Left="0" Top="306.14193" Width="740.409927">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="744.18897882" Height="3.77953" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Frame.Typ="8" Frame.Width="2" ParentFont="False" Style="Header line" Text=""/>
+    </TfrxGroupFooter>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="377.953" Width="740.409927">
+      <TfrxMemoView Name="Memo18" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo19" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo20" Align="baRight" Left="521.197187" Top="1" Width="219.21274" Height="22.67718" HAlign="haRight" Text="[Page#]/[TotalPages#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader2" Height="43.46456693" Left="0" Top="196.53556" Width="740.409927" Condition="Master.&#34;USERNAME_1&#34;">
+      <TfrxMemoView Name="Memo5" Left="224.13606128" Top="22.67716535" Width="80.47397471" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" HAlign="haRight" ParentFont="False" Text="메가바이트"/>
+      <TfrxMemoView Name="Memo6" Left="323.527559055118" Top="22.67716535" Width="107.716535433071" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" HAlign="haRight" ParentFont="False" Text="최대 메가바이트"/>
+      <TfrxMemoView Name="Memo7" Left="446.30298599" Top="22.67716535" Width="83.1496062992126" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" HAlign="haRight" ParentFont="False" Text="블록"/>
+      <TfrxMemoView Name="Memo8" Left="546.95273882" Top="22.67716535" Width="102.047244094488" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" HAlign="haRight" ParentFont="False" Text="최대 블록"/>
+      <TfrxMemoView Name="Memo9" Left="670.40944882" Top="22.67716535" Width="70" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" ParentFont="False" Text="제거됨"/>
+      <TfrxMemoView Name="Memo3" Left="0" Top="22.67716535" Width="188.75345017" Height="20.78740157" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="4" ParentFont="False" Text="테이블스페이스"/>
+      <TfrxMemoView Name="Memo4" Left="3.77953" Top="3.77952999999999" Width="733.00577017" Height="18.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="2" HAlign="haCenter" ParentFont="False" Text="---------------------------------------  개별 테이블스페이스 할당량 ---------------------------------------  "/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

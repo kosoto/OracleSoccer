@@ -1,0 +1,44 @@
+﻿Category: DB 상태/성능 보고서
+Name: 사용자 리소스 사용량
+ReportDefFileName: .\User Resource Usage.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT   DECODE(ses.username, NULL, 'SYS', ses.username) username,
+         TO_CHAR(ses.SID) SID, sn.NAME, sest.VALUE, ins.instance_name,
+		 DECODE(ses.username, NULL, 'SYS', ses.username) || TO_CHAR(ses.SID) usersid
+    FROM gv$session ses, gv$statname sn, gv$sesstat sest, gv$instance ins
+   WHERE ses.SID = sest.SID
+     AND sn.statistic# = sest.statistic#
+     AND sest.VALUE IS NOT NULL
+     AND sest.VALUE != 0
+	 AND ses.INST_ID = sn.INST_ID
+	 AND ses.INST_ID = sest.INST_ID
+	 AND ses.INST_ID = ins.INST_ID
+ORDER BY ses.username, ses.SID, upper(sn.NAME)
+===End SQL===
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38800.4040789236" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6908893981" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="사용자 리소스 사용량"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader1" Height="0" Left="0" Top="105.82684" Width="740.409927" Condition="Master.&#34;USERNAME&#34;" OutlineText="Master.&#34;USERNAME&#34;"/>
+    <TfrxMasterData Name="MasterData1" Height="22.67718" Left="0" Top="192.75603" Width="740.409927" Columns="2" ColumnWidth="377.952755905512" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" RowCount="0">
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="222.99227" Height="18.89765" DataField="NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;NAME&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="222.99227" Top="0" Width="154.96073" Height="18.89765" DataField="VALUE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;VALUE&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="275.90569" Width="740.409927">
+      <TfrxMemoView Name="Memo11" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo13" Align="baRight" Left="498.520007" Top="1" Width="241.88992" Height="22.67718" HAlign="haRight" Text="[Page#]/[TotalPages#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader2" Height="41.57483" Left="0" Top="128.50402" Width="740.409927" Condition="Master.&#34;SID&#34;" OutlineText="'SID:  ' + &#60;Master.&#34;SID&#34;&#62;" StartNewPage="True">
+      <TfrxMemoView Name="Memo6" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="사용자:  [Master.&#34;USERNAME&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="377.953" Top="22.67718" Width="362.83458709" Height="18.89765" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="인스턴스 이름:  [Master.&#34;INSTANCE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo2" Left="0" Top="22.67718" Width="377.953" Height="18.89765" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="SID: [Master.&#34;SID&#34;]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

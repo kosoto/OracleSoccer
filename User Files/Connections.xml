@@ -1,0 +1,34 @@
+<ToadOracle>
+	<FileVersion Encryption="AES">1</FileVersion>
+	<ConnectionHierarchy>
+		<DbPlatform name="Oracle">
+			<Connections>
+				<Connection type="Oracle">
+					<User>
+						<![CDATA[KSTAD]]>
+					</User>
+					<Server>XE</Server>
+					<AutoConnect>False</AutoConnect>
+					<Home>C:\oraclexe\app\oracle\product\11.2.0\server</Home>
+					<SavePassword>False</SavePassword>
+					<Favorite>False</Favorite>
+					<SessionReadOnly>False</SessionReadOnly>
+					<Alias/>
+					<Host/>
+					<InstanceName/>
+					<Sid/>
+					<Port/>
+					<LDAP/>
+					<ConnectionType>Client</ConnectionType>
+					<Protocol/>
+					<Color>16777215</Color>
+					<ConnectionMode>Default</ConnectionMode>
+					<LastConnectionDate>2018-06-29T14:28:56.787Z</LastConnectionDate>
+					<RelativePosition>0</RelativePosition>
+					<GUID>{2DBA1EB9-D0AF-4A64-9137-CDBE82CF41CD}</GUID>
+					<CustomFields/>
+				</Connection>
+			</Connections>
+		</DbPlatform>
+	</ConnectionHierarchy>
+</ToadOracle>

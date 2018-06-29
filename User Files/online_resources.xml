@@ -1,0 +1,384 @@
+﻿<RESOURCES>
+	<!--For complete specifications including file format see online_resources_specs.txt in source repository (StarTeam). Please keep the specifications updated.-->
+	<!--release_notes-->
+	<RESOURCE type="release_notes">
+		<VERSIONS>11.0</VERSIONS>
+		<URL build="full">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.0_ReleaseNotes.htm]]>
+		</URL>
+		<URL build="trial">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.0_ReleaseNotesTrial.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>11.5</VERSIONS>
+		<URL build="full">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.5_ReleaseNotes.htm]]>
+		</URL>
+		<URL build="trial">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.5_ReleaseNotesTrial.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>11.6</VERSIONS>
+		<URL build="full">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.6_ReleaseNotes.htm]]>
+		</URL>
+		<URL build="trial">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.6_ReleaseNotesTrial.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.0</VERSIONS>
+		<URL build="full">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.0_ReleaseNotes.htm]]>
+		</URL>
+		<URL build="trial">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.0_ReleaseNotesTrial.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.1</VERSIONS>
+		<URL build="full">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.1_ReleaseNotes.htm]]>
+		</URL>
+		<URL build="trial">
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.1_ReleaseNotesTrial.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.5</VERSIONS>
+		<URL>
+			<![CDATA[http://documents.quest.com/book/2587]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.6</VERSIONS>
+		<URL>
+			<![CDATA[http://documents.quest.com/Book/3254]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.7</VERSIONS>
+		<URL>
+			<![CDATA[http://documents.quest.com/Book/4339]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.8</VERSIONS>
+		<URL>
+			<![CDATA[http://documents.quest.com/toad-for-oracle/12.8/release-notes/]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="release_notes">
+		<VERSIONS>12.9</VERSIONS>
+		<URL>
+			<![CDATA[http://documents.quest.com/toad-for-oracle/12.9/release-notes/]]>
+		</URL>
+	</RESOURCE>
+	<!--whats_new-->
+	<RESOURCE type="whats_new">
+		<TITLE>What's New in Toad 11</TITLE>
+		<DESCRIPTION>What's new in Toad 11</DESCRIPTION>
+		<VERSIONS>11.0</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.0_NewInThisRelease.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="whats_new">
+		<TITLE>What's New in Toad 11.5</TITLE>
+		<DESCRIPTION>What's new in Toad 11.5</DESCRIPTION>
+		<VERSIONS>11.5</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.5_NewInThisRelease.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="whats_new">
+		<TITLE>What's New in Toad 11.6</TITLE>
+		<DESCRIPTION>What's new in Toad 11.6</DESCRIPTION>
+		<VERSIONS>11.6</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_11.6_NewInThisRelease.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="whats_new">
+		<TITLE>What's New in Toad 12.0</TITLE>
+		<DESCRIPTION>What's new in Toad 12.0</DESCRIPTION>
+		<VERSIONS>12.0</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.0_NewInThisRelease.htm]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="whats_new">
+		<TITLE>What's New in Toad 12.1</TITLE>
+		<DESCRIPTION>What's new in Toad 12.1</DESCRIPTION>
+		<VERSIONS>12.1</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/ToadForOracle_12.1_NewInThisRelease.htm]]>
+		</URL>
+	</RESOURCE>
+	<!--whats_new_beta-->
+	<RESOURCE type="whats_new_beta">
+		<TITLE>What's New in Toad Beta</TITLE>
+		<DESCRIPTION>What's new in Toad Beta</DESCRIPTION>
+		<VERSIONS>*</VERSIONS>
+		<URL>
+			<![CDATA[http://toadsoft.com/EditionRNs/ToadForOracle/NewInThisReleaseBETA.htm]]>
+		</URL>
+	</RESOURCE>
+	<!--video-->
+	<!--download-->
+	<RESOURCE type="download" category="core_product_install" identifier="full">
+		<URL>
+			<![CDATA[https://support.quest.com/toad-for-oracle/download-new-releases]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="download" category="core_product_install" identifier="beta_update">
+		<URL>
+			<![CDATA[http://community-downloads.quest.com/toadsoft/ORACLE/]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="download" category="core_product_install" identifier="trial">
+		<URL>
+			<![CDATA[https://www.quest.com/products/toad-for-oracle/software-downloads.aspx]]>
+		</URL>
+	</RESOURCE>
+    <RESOURCE type="download" category="quest" identifier="ver_txt">
+ 		<URL>
+			<![CDATA[http://community-downloads.quest.com/toadsoft/ORACLE/VERSION/ver.txt]]>
+		</URL>
+	</RESOURCE>
+    <RESOURCE type="download" category="quest" identifier="betaver_txt">
+		<URL>
+			<![CDATA[http://community-downloads.quest.com/toadsoft/ORACLE/VERSION/betaver.txt]]>
+		</URL>
+	</RESOURCE>
+	<!--link-->
+	<RESOURCE type="link" category="quest" identifier="toad_videos">
+		<URL>
+			<![CDATA[http://community.toadworld.com/products/toad-for-oracle/m/media-library/default.aspx]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_tips">
+		<URL>
+			<![CDATA[http://community.toadworld.com/tips]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_training">
+		<URL>
+			<![CDATA[http://community.toadworld.com/training/p/web-based-training]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_blogs">
+		<URL>
+			<![CDATA[http://community.toadworld.com/products/toad-for-oracle/b/weblog/default.aspx]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_support">
+		<URL>
+			<![CDATA[https://support.quest.com]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_oracle_support">
+		<URL>
+			<![CDATA[https://support.quest.com/Toad%20for%20Oracle]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_kb">
+		<URL>
+			<![CDATA[https://support.quest.com/toad-for-oracle/kb]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_support_solutions" problem="ocierror">
+		<URL >
+			<![CDATA[https://support.quest.com/toad-for-oracle/kb/64853]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="toad_support_solutions" problem="login">
+		<URL>
+			<![CDATA[https://support.quest.com/toad-for-oracle/kb/34184]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="toad_support_solutions" problem="noclient">
+		<URL >
+			<![CDATA[https://support.quest.com/toad-for-oracle/kb/71545]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="toad_support_solutions" problem="">
+		<URL >
+			<![CDATA[https://support.quest.com/toad-for-oracle/kb/64853]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="myToad_home">
+		<URL build="full, trial">
+			<![CDATA[http://mytoad.toadworld.com]]>
+		</URL>
+		<URL build="beta">
+			<![CDATA[http://mytoadbeta.toadworld.com]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="search_toadworld">
+		<URL>
+			<![CDATA[http://community.toadworld.com/ToadWorldSearch/Default.aspx?RefName=TOAD&Query=%s&TwRel=%s]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="search_kbonline">
+		<URL>
+			<![CDATA[https://support.quest.com/searchknowledgebase.aspx?pr=268435520&k=%s]]>
+		</URL>
+	</RESOURCE>
+  <RESOURCE type="link" category="quest" identifier="support_product_page">
+		<URL>
+			<![CDATA[https://support.quest.com/toad-for-oracle/]]>
+		</URL>
+	</RESOURCE>
+ <RESOURCE type="link" category="quest" identifier="support_videos">
+		<URL>
+			<![CDATA[https://support.quest.com/toad-for-oracle/videos]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="search_google">
+		<URL>
+			<![CDATA[http://www.google.com/search?q=%s]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="search_yahoo">
+		<URL>
+			<![CDATA[http://search.yahoo.com/search?p=%s]]>
+		</URL>
+	</RESOURCE>
+  <RESOURCE type="link" category="quest" identifier="search_duckduckgo">
+		<URL>
+			<![CDATA[http://duckduckgo.com/?q=%s]]>
+		</URL>
+	</RESOURCE>
+  <RESOURCE type="link" category="quest" identifier="search_baidu">
+		<URL>
+			<![CDATA[http://www.baidu.com/s?wd=%s]]>
+		</URL>
+	</RESOURCE>
+  <RESOURCE type="link" category="quest" identifier="quest_privacy">
+		<URL>
+			<![CDATA[http://www.quest.com/legal/privacy.aspx]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="beta_email">
+		<URL>
+			<![CDATA[toadoraclebeta@toadworld.com]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="link" category="quest" identifier="commercial_email">
+		<URL>
+			<![CDATA[toadoracle@toadworld.com]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="project_lucy">
+		<URL>
+			<![CDATA[https://www.spotlightessentials.com/]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="toadworld">
+		<URL>
+			<![CDATA[https://community.toadworld.com/]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="ideapond">
+		<URL>
+			<![CDATA[http://community.toadworld.com/products/toad-for-oracle/i/default.aspx]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="tdt_openid_host">
+		<URL>
+			<![CDATA[id.quest.com]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="tdt_openid_redirecturl">
+		<URL>
+			<![CDATA[https://community.toadworld.com/products/toad-devops-toolkit/p/verify_email]]>
+		</URL>
+	</RESOURCE>
+   <RESOURCE type="link" category="quest" identifier="tdt_rest_api">
+		<URL>
+			<![CDATA[subscriptions.toadworld.com/]]>
+		</URL>
+	</RESOURCE>
+	<!--repository-->
+	<RESOURCE type="repository" category="quest" identifier="dev">
+		<DESCRIPTION>400dlv4SjhPGRJZv8PtRAemgKhLV3NPKHptHEpBFR8/z5sQMrO+BcMvOxdTWBLDCSRJ3aFIFuKAbv6C6GcaIBUUQ==</DESCRIPTION>
+		<URL>
+			<![CDATA[(DESCRIPTION= (ADDRESS= (PROTOCOL=TCP)(HOST=toadqa.ch4y2wqmtnom.us-east-1.rds.amazonaws.com)(PORT=3306))(CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=TOADQA)))]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="repository" category="quest" identifier="qa">
+		<DESCRIPTION>400dlv4SjhPGRJZv8PtRAemgKhLV3NPKHptHEpBFR8/z5sQMrO+BcMvOxdTWBLDCSRJ3aFIFuKAbv6C6GcaIBUUQ==</DESCRIPTION>
+		<URL>
+			<![CDATA[(DESCRIPTION= (ADDRESS= (PROTOCOL=TCP)(HOST=toadqa.ch4y2wqmtnom.us-east-1.rds.amazonaws.com)(PORT=3306))(CONNECT_DATA= (SERVER=DEDICATED) (SERVICE_NAME=TOADQA)))]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="repository" category="quest" identifier="prod">
+		<DESCRIPTION>400dlv4SjhPGRJZv8PtRAemgKhLV3NPKHptHEpBFR8/z5sQMrO+BcMvOxdTWBLDCSRXxd+b4XgyD1IerDrqndDDw==</DESCRIPTION>
+		<URL>
+			<![CDATA[(DESCRIPTION= (ADDRESS= (PROTOCOL=TCP)(HOST=toad.ch4y2wqmtnom.us-east-1.rds.amazonaws.com)(PORT=3306))(CONNECT_DATA= (SERVER=SHARED) (SERVICE_NAME=TOAD)))]]>
+		</URL>
+	</RESOURCE>
+	<!--community-->
+	<RESOURCE type="community" category="telligent" identifier="dev">
+		<DESCRIPTION>7VkMdcbLcPFloupcTEdrdq3fOiO2YRB7HRDCC+d+9YmnfsTagSaurpSru+GZGYFN4NJxcAu8THTlQtwDCVrSM0MkKAp0LAjBxdn2m8MbsGJD4JWJX+t0FmTfE4QBmm89r0WEjG1QrcaAmuElBdKrd2ITN/fs3gxAqWzt4r3ugBK3NO0qRWXrW+MgC0Ctpb8WKphoJ2n76AyjCaaRwhwgw8+y13gAP92ztapUqbiZs9WBR53b5aQKKVnQcizsR4CU0PIYonIDgbMOdJnujcqpEwK6IXVwDlrG9XgFyIHWlzo3CridPOra86o1Dm1xpBicWeDgD6DLbIeRjrn9Zu+LzwYFyzVi+szSvSsvQ7Wxx9C7MNYLyBSGqU+G+Ox89uMh</DESCRIPTION>
+		<URL>
+			<![CDATA[http://dev-toadworld.prod.quest.corp]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="community" category="telligent" identifier="stage">
+		<DESCRIPTION>IvVSwZphaKS5SCinLEBzbyL8o3wdfRaVG20oHpd9NyuVB+4pWnPcod1wuk07GJ8GBXUEGN1tlwdM3n+wZiVGlA9fbEMU3TJeMkHc1GQPgnp+27/qcZkpgB9jIvbt9lAtP2Tt7hk3UZGZ1KWzPHrkmEqwGrHhDWj76wOqgsvTxxqBBfYebJoBkWNO8Ko2e7ZHCYO1AoBrPDWr+Ue7XoHNxUMTXOA1J1QTIoOzpd6JIMiVv5tPEaXv1hb8tliDDkogjzCQLd7Sf8ee3LkXRdkE7pycOvDgy5Cx5JEcgf/ZLI+wPnD8AawowKKPp2+W/h7LVFkGRwlrarMxVhH9v2xYW4j9Be2sYiltq/BG0x/OfwP0f9x9LT9zVSPAmsUyNj/L</DESCRIPTION>
+		<URL>
+			<![CDATA[https://beta.toadworld.com]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="community" category="telligent" identifier="prod">
+		<DESCRIPTION>IvVSwZphaKS5SCinLEBzbyL8o3wdfRaVG20oHpd9NyuVB+4pWnPcod1wuk07GJ8GBXUEGN1tlwdM3n+wZiVGlKE6NBiuo5tEZUEofdM9bLbCVSKrRWzyLUHOgxmvUmEvcUSXCbXdB7X6K4oyu6pWM4zg3T9B6RU+OyiAgXOdWjD6/psnDbff/NLy5NcvPHwFfPbNGSah3oYRBvtt78HNKIRl2VTb+IaRuW/ekIWqOq0OYzHHGJRjqdg24/J55TOQZOwbjefDplVSP+kC1on0OA3zTqSfaoCZyv7ajZHQAVPSZEbj5FJ1ZZH+dT1EgFrMgHScUvacIruisYaHaumWe+btnRF8AsyDRSF51IzlmzI2DMMbd54NMYusq7QEaRZ+</DESCRIPTION>
+		<URL>
+			<![CDATA[https://community.toadworld.com]]>
+		</URL>
+	</RESOURCE>
+	<!--QuestSSO-->
+	<RESOURCE type="sso" category="quest" identifier="prod">
+		<URL>
+			<![CDATA[https://qcs.quest.com/qcsservice.svc]]>
+		</URL>
+	</RESOURCE>
+	<!--Knowledge Base API-->
+	<RESOURCE type="kb_api" category="quest" identifier="prod">
+		<DESCRIPTION>BCNkbLQOH4u/22x4yLw80sKxW9uFIaUaWwtt+1zuPlkumhvuZ7GnZbbvLQsKWTMwtE/BK9/pEhgak6StVl4MvFnuhHzoGPNTJp0Xf0ewPOfpX1pZJyWBxokNqA41AOpnBQTP/f5K52eheeh4tKNFVfWHQ+gzFbQMGGqoMSqxlx1FZNwpAopN9gRLwZQ6Dq7f0AcprvrA7dMfVtwL9gbl2e6XAQp5ZFuCypUjh45JhmTzEnfbxDMABimcWub+zg71h+0c/wkCGw6CTwXK0YXbsr6tYvuvyvjXy10wjjc0/C4=</DESCRIPTION>
+		<URL>
+			<![CDATA[https://kb.quest.com/searchapi/kb]]>
+		</URL>
+	</RESOURCE>
+	<RESOURCE type="kb_api" category="quest" identifier="prod">
+		<DESCRIPTION>BCNkbLQOH4u/22x4yLw80sKxW9uFIaUaWwtt+1zuPlkumhvuZ7GnZbbvLQsKWTMwtE/BK9/pEhgak6StVl4MvFnuhHzoGPNTJp0Xf0ewPOfpX1pZJyWBxokNqA41AOpnBQTP/f5K52eheeh4tKNFVfWHQ+gzFbQMGGqoMSqxlx1FZNwpAopN9gRLwZQ6Dq7f0AcprvrA7dMfVtwL9gbl2e6XAQp5ZFuCypUjh45JhmTzEnfbxDMABimcWub+zg71h+0c/wkCGw6CTwXK0YXbsr6tYvuvyvjXy10wjjc0/C4=</DESCRIPTION>
+		<URL>
+			<![CDATA[https://kb.quest.com]]>
+		</URL>
+		<VERSIONS>12.11</VERSIONS>
+	</RESOURCE>
+	<!--freeware teaser being deprecated in favor of built in trial devolving to freeware. -->
+	<!--
+	<RESOURCE type="freeware" category="quest" identifier="freeware_current">
+		<DESCRIPTION>
+<![CDATA[Starting June, 2017, start using the full power of Session Browser to examine user session information for all sessions. Toad Freeware limits you to Toad sessions only. Please enjoy!]]>
+		</DESCRIPTION>
+		<FREEWAREFORMID type="form">77</FREEWAREFORMID>
+	</RESOURCE>
+	<RESOURCE type="freeware" category="quest" identifier="freeware_next">
+		<DESCRIPTION>
+			<![CDATA[Starting July 1, 2017, you will have the full use of this feature. Toad Freeware normally limits the number of object types and disables any customization. We hope you like it! ]]>
+		</DESCRIPTION>
+		<FREEWAREFORMID type="form">57</FREEWAREFORMID>
+	</RESOURCE>
+	-->
+	<RESOURCE type="features" category="quest" identifier="latest">
+		<FEATURE><![CDATA[Dual monitor and SDI support]]></FEATURE>
+		<FEATURE><![CDATA[Team Coding improvements]]></FEATURE>
+		<FEATURE><![CDATA[Code Analysis rule enhancements]]></FEATURE>
+		<FEATURE><![CDATA[Bug fixes]]></FEATURE>
+	</RESOURCE>
+</RESOURCES>

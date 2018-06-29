@@ -1,0 +1,67 @@
+﻿Category: 내 보고서
+Name: Scott 부서
+ReportDefFileName: .\The Scott Company.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+Select * from scott.dept
+===End SQL===
+Detail 1 Name: emp
+Detail 1 Master: Master
+Detail 1 Master Keys: DEPTNO;
+Detail 1 Detail Keys: DEPTNO;
+===Begin Detail 1 SQL===
+-- employees per department
+SELECT * FROM   scott.emp
+
+
+===End Detail 1 SQL===
+Detail 2 Name: manager
+Detail 2 Master: emp
+Detail 2 Master Keys: MGR;
+Detail 2 Detail Keys: EMPNO;
+===Begin Detail 2 SQL===
+select * from scott.emp
+
+
+===End Detail 2 SQL===
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.16" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38789.5454601273" ReportOptions.Description.Text="" ReportOptions.LastChange="38789.551338912" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2900000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D22656D702200010C2D00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D226D616E616765722200010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text="Scott의 회사"/>
+    </TfrxReportTitle>
+    <TfrxPageHeader Name="PageHeader1" Height="86.92919" Left="0" Top="68.03154" Width="740.409927">
+      <TfrxMemoView Name="Memo2" Left="-3.77953" Top="0" Width="740.40944882" Height="75.5906" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Frame.Typ="8" Frame.Width="2" ParentFont="False" Style="Header line" Text=""/>
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="78" Height="22.67718" Color="16777180" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="부서 번호"/>
+      <TfrxMemoView Name="Memo4" Left="78" Top="0" Width="107" Height="22.67718" Color="16777180" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="부서 이름"/>
+      <TfrxMemoView Name="Memo5" Left="185" Top="0" Width="100" Height="22.67718" Color="16777180" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="위치"/>
+      <TfrxMemoView Name="Memo18" Left="143.62214" Top="26.45671" Width="157.37013" Height="22.67718" Color="13296895" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="직원 이름"/>
+      <TfrxMemoView Name="Memo19" Left="298.582677165354" Top="26.45671" Width="107" Height="22.67718" Color="13296895" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="작업"/>
+      <TfrxMemoView Name="Memo20" Left="143.62214" Top="49.13389" Width="157.37013" Height="22.67718" Color="13434828" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="MGR 이름"/>
+      <TfrxMemoView Name="Memo21" Left="298.582677165354" Top="49.13389" Width="107" Height="22.67718" Color="13434828" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="작업"/>
+    </TfrxPageHeader>
+    <TfrxMasterData Name="MasterData1" Height="18.89765" Left="0" Top="215.43321" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" RowCount="0">
+      <TfrxMemoView Name="Memo6" Left="0" Top="0" Width="78" Height="18.89765" Color="16777180" DataField="DEPTNO" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;DEPTNO&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="78" Top="0" Width="107" Height="18.89765" Color="16777180" DataField="DNAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;DNAME&#34;]"/>
+      <TfrxMemoView Name="Memo8" Left="185" Top="0" Width="100" Height="18.89765" Color="16777180" DataField="LOC" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;LOC&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="377.953" Width="740.409927">
+      <TfrxMemoView Name="Memo9" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo10" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo11" Align="baRight" Left="664.819327" Top="1" Width="75.5906" Height="22.67718" HAlign="haRight" Text="[Page#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" Height="18.89765" Left="0" Top="257.00804" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="emp" RowCount="0">
+      <TfrxMemoView Name="Memo12" Left="143.622047244094" Top="0" Width="154.96073" Height="18.89765" Color="13296895" DataField="ENAME" DataSet="ReportsForm." DataSetName="emp" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[emp.&#34;ENAME&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="298.582677165354" Top="0" Width="147.40167" Height="18.89765" Color="13296895" DataField="JOB" DataSet="ReportsForm." DataSetName="emp" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[emp.&#34;JOB&#34;]"/>
+      <TfrxMemoView Name="Memo16" Left="41.57480315" Top="0" Width="102.04731" Height="18.8976378" Color="13296895" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="(직원)"/>
+    </TfrxDetailData>
+    <TfrxSubdetailData Name="SubdetailData1" Height="18.89765" Left="0" Top="298.58287" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="manager" RowCount="0">
+      <TfrxMemoView Name="Memo14" Left="143.622047244094" Top="0" Width="158.74026" Height="18.89765" Color="13434828" DataField="ENAME" DataSet="ReportsForm." DataSetName="manager" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[manager.&#34;ENAME&#34;]"/>
+      <TfrxMemoView Name="Memo15" Left="298.58267717" Top="0" Width="147.40167" Height="18.89765" Color="13434828" DataField="JOB" DataSet="ReportsForm." DataSetName="manager" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[manager.&#34;JOB&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="60.47245315" Top="0" Width="81.88981667" Height="18.8976378" Color="13434828" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="(관리자)"/>
+    </TfrxSubdetailData>
+  </TfrxReportPage>
+</TfrxReport>

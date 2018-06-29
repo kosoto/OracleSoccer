@@ -1,0 +1,176 @@
+--팀 테이블 생성
+CREATE TABLE TEAMZ(
+    TEAM_ID VARCHAR2(10) PRIMARY KEY,
+    TEAM_NAME VARCHAR(20)
+)
+;
+--팀 테이블 채우기
+INSERT INTO TEAMZ
+VALUES('ATEAM','저스티스');
+
+INSERT INTO TEAMZ
+VALUES('HTEAM','엘카로');
+
+INSERT INTO TEAMZ
+VALUES('CTEAM','가오갤');
+
+INSERT INTO TEAMZ
+VALUES('STEAM','어벤저스');
+--팀원 테이블 생성
+CREATE TABLE TEAMW(
+    MEM_ID VARCHAR2(10) PRIMARY KEY,
+    TEAM_ID VARCHAR2(10),
+    MEM_NAME VARCHAR2(10),
+    MEM_AGE DECIMAL
+)
+;
+--팀원 테이블에 FK 추가
+ALTER TABLE TEAMW
+ADD CONSTRAINT TEAMW_FK_TEAM_ID 
+FOREIGN KEY (TEAM_ID) REFERENCES TEAMZ(TEAM_ID);
+SELECT * FROM TEAMW;
+--팀원 테이블 채우기
+--A팀
+INSERT INTO TEAMW VALUES
+(
+   'A1', 'ATEAM', '형준',34 
+);
+INSERT INTO TEAMW VALUES
+(
+   'A2', 'ATEAM', '세인',35 
+);
+INSERT INTO TEAMW VALUES
+(
+   'A3', 'ATEAM', '희태',21 
+);
+INSERT INTO TEAMW VALUES
+(
+   'A4', 'ATEAM', '상훈',29 
+);
+INSERT INTO TEAMW VALUES
+(
+   'A5', 'ATEAM', '태형',25 
+);
+--H팀
+INSERT INTO TEAMW VALUES
+(
+   'H1', 'HTEAM', '혜리',26 
+);
+INSERT INTO TEAMW VALUES
+(
+   'H2', 'HTEAM', '지은',26 
+);
+INSERT INTO TEAMW VALUES
+(
+   'H3', 'HTEAM', '준',27 
+);
+INSERT INTO TEAMW VALUES
+(
+   'H4', 'HTEAM', '재경',30 
+);
+INSERT INTO TEAMW VALUES
+(
+   'H5', 'HTEAM', '단아',26 
+);
+--C팀
+INSERT INTO TEAMW VALUES
+(
+   'C1', 'CTEAM', '최정훈',32 
+);
+INSERT INTO TEAMW VALUES
+(
+   'C2', 'CTEAM', '김윤호',31 
+);
+INSERT INTO TEAMW VALUES
+(
+   'C3', 'CTEAM', '가은',29 
+);
+INSERT INTO TEAMW VALUES
+(
+   'C4', 'CTEAM', '정훈',23 
+);
+INSERT INTO TEAMW VALUES
+(
+   'C5', 'CTEAM', '승태',30 
+);
+--S팀
+INSERT INTO TEAMW VALUES
+(
+   'S1', 'STEAM', '승호',27 
+);
+INSERT INTO TEAMW VALUES
+(
+   'S2', 'STEAM', '소진',26 
+);
+INSERT INTO TEAMW VALUES
+(
+   'S3', 'STEAM', '이슬',29 
+);
+INSERT INTO TEAMW VALUES
+(
+   'S4', 'STEAM', '진태',26 
+);
+INSERT INTO TEAMW VALUES
+(
+   'S5', 'STEAM', '누리',30 
+);
+--팀원 테이블에 역활 COLUMN 추가
+ALTER TABLE TEAMW 
+ADD ROLL VARCHAR2(20)  
+;
+--팀원 테이블에 역활 부여
+UPDATE TEAMW
+SET ROLL = 
+    CASE 
+        WHEN MEM_NAME IN ('승호','혜리','최정훈','형준') THEN '팀장'
+        ELSE '팀원'
+    END
+WHERE ROLL IS NULL
+;
+
+--COUNT() 팀원수
+--SUM() 팀원 나이합
+--MAX() 팀원 나이 최대치
+--MIN() 팀원 나이 최소치
+--AVG() 팀원 나이 평균
+SELECT
+    (SELECT ZZ.TEAM_NAME
+    FROM TEAMZ ZZ
+    WHERE ZZ.TEAM_ID LIKE W.TEAM_ID
+       -- AND zz.team_id LIKE w.team_id
+    ) 팀명, 
+    COUNT(W.MEM_ID) "팀원 수",
+    SUM(W.MEM_AGE) "팀원 나이합",
+    MAX(W.MEM_AGE) "팀원 나이 최대치",
+    MIN(W.MEM_AGE) "팀원 나이 최소치",
+    AVG(W.MEM_AGE) "팀원 나이 평균",
+    (SELECT W1.MEM_NAME 
+     FROM TEAMW W1             
+     WHERE W1.ROLL LIKE '팀장'
+         AND W.TEAM_ID LIKE W1.TEAM_ID) "팀장"
+FROM TEAMW W 
+    JOIN TEAMZ Z ON W.TEAM_ID LIKE Z.TEAM_ID
+GROUP BY 
+    W.TEAM_ID
+--HAVING AVG(W.MEM_AGE) >= 28   
+ORDER BY SUM(W.MEM_AGE) DESC
+;
+
+
+--SQL의 Switch
+--SELECT 
+--    PLAYER_NAME,    
+--    CASE
+--        WHEN POSITION IS NULL THEN '없음'
+--        WHEN POSITION LIKE 'GK' THEN '골키퍼'
+--        WHEN POSITION LIKE 'MF' THEN '미드필더'
+--        WHEN POSITION LIKE 'DF' THEN '수비수'
+--        WHEN POSITION LIKE 'FW' THEN '공격수'
+--        ELSE POSITION
+--    END 포지션
+--FROM
+--    PLAYER
+--WHERE
+--    TEAM_ID LIKE 'K08'
+--ORDER BY 포지션 
+--;    

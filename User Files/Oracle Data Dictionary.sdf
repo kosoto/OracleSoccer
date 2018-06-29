@@ -1,0 +1,30 @@
+D:\ORACLE\ORA817\rdbms\admin\catblock.sql|Performance management|Creates views that can dynamically display lock dependency graphs
+D:\ORACLE\ORA817\rdbms\admin\utltkprf.sql|Performance management|Creates the TKPROFER role to allow the TKPROF profiling utility to be run by non-DBA users
+D:\ORACLE\ORA817\rdbms\admin\utlxplan.sql|Performance management|Creates the table PLAN_TABLE, which holds output from the EXPLAIN PLAN command
+D:\ORACLE\ORA817\rdbms\admin\catio.sql|Performance management|Allows I/O to be traced on a table-by-table basis
+D:\ORACLE\ORA817\rdbms\admin\dbmsotrc.sql|Performance management|Enables and disables generation of Oracle Trace output
+D:\ORACLE\ORA817\rdbms\admin\dbmspool.sql|Performance management|Enables DBA to lock PL/SQL packages, SQL statements, and triggers into the shared pool
+D:\ORACLE\ORA817\rdbms\admin\catexp7.sql|Exporting data to Oracle7|Creates the dictionary views needed for the Oracle7 Export utility to export data from Oracle8i in Oracle7 Export file format
+D:\ORACLE\ORA817\rdbms\admin\caths.sql|Heterogeneous Services|Installs packages for administering heterogeneous services
+D:\ORACLE\ORA817\rdbms\admin\catoctk.sql|Security|Creates the Oracle Cryptographic Toolkit package
+D:\ORACLE\ORA817\rdbms\admin\catparr.sql|Oracle Parallel Server|Creates parallel server data dictionary views
+D:\ORACLE\ORA817\rdbms\admin\catqueue.sql|Advanced Queuing|Creates the dictionary objects required for Advanced Queuing
+D:\ORACLE\ORA817\rdbms\admin\catrm.sql|Recovery Manager|Creates recovery manager tables and views (schema) to establish an external recovery catalog
+D:\ORACLE\ORA817\rdbms\admin\dbmsiotc.sql|Storage management|Analyzes chained rows in index-organized tables
+D:\ORACLE\ORA817\rdbms\admin\userlock.sql|Concurrency control|Provides a facility for user-named locks that can be used in a local or clustered environment to aid in sequencing apps
+D:\ORACLE\ORA817\rdbms\admin\utlbstat.sql|Performance monitoring|Start collecting performance tuning statistics
+D:\ORACLE\ORA817\rdbms\admin\utlestat.sql|Performance monitoring|Stop collecting performance tuning statistics
+D:\ORACLE\ORA817\rdbms\admin\utlchn1.sql|Storage management|For use with Oracle8i. Creates tables for storing the output of the ANALYZE command with the CHAINED ROWS option. 
+D:\ORACLE\ORA817\rdbms\admin\utlconst.sql|Year 2000 compliance|Provides functions to validate that CHECK constraints on date columns are year 2000 compliant
+D:\ORACLE\ORA817\rdbms\admin\utldtree.sql|Metadata management|Creates tables and views that show dependencies between objects
+D:\ORACLE\ORA817\rdbms\admin\utlexpt1.sql|Constraints|For use with Oracle8i. Creates the default table (EXCEPTIONS) for storing exceptions from enabling constraints.
+D:\ORACLE\ORA817\rdbms\admin\utlhttp.sql|Web access|PL/SQL package to retrieve data from Internet or intranet web servers via HTTP protocol
+D:\ORACLE\ORA817\rdbms\admin\utlip.sql|PL/SQL|Used primarily for migration, upgrade, and downgrade operations. It invalidates all existing PL/SQL modules.
+D:\ORACLE\ORA817\rdbms\admin\utlirp.sql|PL/SQL|Used to change from 32-bit to 64-bit word size or vice versa. This script recompiles existing PL/SQL modules.
+D:\ORACLE\ORA817\rdbms\admin\utllockt.sql|Performance monitoring|Displays a lock wait-for graph, in tree structure format
+D:\ORACLE\ORA817\rdbms\admin\utlpg.sql|Data conversion|Provides a package that converts IBM/370 VS COBOL II
+D:\ORACLE\ORA817\rdbms\admin\utlpwdmg.sql|Security|Creates PL/SQL function for default password complexity verification. Sets the default password profile parameters.
+D:\ORACLE\ORA817\rdbms\admin\utlrp.sql|PL/SQL|Recompiles all existing PL/SQL modules that were previously in an INVALID state.
+D:\ORACLE\ORA817\rdbms\admin\utlsampl.sql|Examples|Creates sample tables, such as EMP and DEPT, and users, such as SCOTT
+D:\ORACLE\ORA817\rdbms\admin\utlscln.sql|Advanced Replication|Copies a snapshot schema from another snapshot site
+D:\ORACLE\ORA817\rdbms\admin\utlvalid.sql|Partitioned tables|Creates table required for storing output of ANALYZE TABLE ...VALIDATE STRUCTURE of a partitioned table

@@ -1,0 +1,75 @@
+Category: Code Analysis Reports
+Name: Number of Statements
+ReportDefFileName: .\Code Analysis - Number of Statements.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT cx_xpertrun.rundate, cx_xpertrun.runname,
+       upper(cx_xpertitems.instance) instance, cx_xpertitems.schema,
+       cx_xpertitems.objname, cx_metrics.score, cx_metrics.met_meaning
+  FROM cx_xpertrun, cx_xpertitems, cx_metrics
+ WHERE cx_xpertrun.runname = cx_xpertitems.runname
+   AND cx_xpertitems.runname = cx_metrics.runname
+   AND cx_xpertitems.itemno = cx_metrics.itemno
+   AND cx_metrics.met_name = 'Number of Statements'
+   AND cx_xpertrun.rundate BETWEEN :lo_date AND :hi_date
+ORDER BY cx_xpertrun.rundate, cx_xpertrun.runname,
+         cx_xpertitems.instance, cx_xpertitems.schema,
+         cx_xpertitems.objname  
+===End SQL===
+ParamName: lo_date
+ParamType: Date
+ParamValue: 
+ParamExp: sysdate-30
+ParamName: hi_date
+ParamType: Date
+ParamValue: 
+ParamExp: sysdate
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38960.4100625694" ReportOptions.Description.Text="" ReportOptions.LastChange="38960.539751331" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text="Number of Statements Report"/>
+    </TfrxReportTitle>
+    <TfrxPageHeader Name="PageHeader1" Height="42.68769334" Left="0" Top="68.03154" Width="740.409927">
+      <TfrxMemoView Name="Memo16" Left="2.44619667" Top="20" Width="79.37013" Height="18.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Memo17" Left="622.28911667" Top="20" Width="113.3859" Height="18.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Page: [Page#] of [TotalPages#]"/>
+      <TfrxMemoView Name="Memo29" Align="baWidth" Left="0" Top="3.96845999999999" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+    </TfrxPageHeader>
+    <TfrxGroupHeader Name="GroupHeader1" Height="169.64842334" Left="0" Top="170.07885" Width="740.409927" Condition="Master.&#34;RUNNAME&#34;" KeepTogether="True" ReprintOnNewPage="True">
+      <TfrxMemoView Name="Memo3" Left="1.33333333" Top="143.63265333" Width="126.86419623" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="OBJECT NAME"/>
+      <TfrxMemoView Name="Memo4" Left="306.86419623" Top="143.63265333" Width="62.32229569" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="SCORE"/>
+      <TfrxMemoView Name="Memo5" Left="403.85315858" Top="143.63265333" Width="337.88962357" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="METRIC MEANING"/>
+      <TfrxMemoView Name="Memo6" Align="baWidth" Left="108.99947569" Top="20.46196666" Width="631.41045131" Height="22.67718" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Style="Group header" VAlign="vaCenter" Text="[Master.&#34;RUNNAME&#34;]"/>
+      <TfrxMemoView Name="Memo7" Align="baWidth" Left="108.99947569" Top="49.14440333" Width="631.41045131" Height="22.67718" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Style="Group header" VAlign="vaCenter" Text="[Master.&#34;RUNDATE&#34;]"/>
+      <TfrxMemoView Name="Memo8" Align="baWidth" Left="108.99947569" Top="76.93444666" Width="631.41045131" Height="22.67718" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Style="Group header" VAlign="vaCenter" Text="[Master.&#34;INSTANCE&#34;]"/>
+      <TfrxMemoView Name="Memo9" Align="baWidth" Left="108.99947569" Top="103.39115666" Width="631.41045131" Height="22.67718" Color="15790320" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Style="Group header" VAlign="vaCenter" Text="[Master.&#34;SCHEMA&#34;]"/>
+      <TfrxMemoView Name="Memo19" Align="baWidth" Left="0" Top="128.51453333" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+      <TfrxMemoView Name="Memo25" Left="2.66666667" Top="21.7953" Width="106.33280902" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Run Name:"/>
+      <TfrxMemoView Name="Memo26" Left="2.66666667" Top="49.14440333" Width="106.33280902" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Run Date:"/>
+      <TfrxMemoView Name="Memo27" Left="2.66666667" Top="76.93444666" Width="106.33280902" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="DB Instance:"/>
+      <TfrxMemoView Name="Memo28" Left="2.66666667" Top="104.72449" Width="106.33280902" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="DB Schema:"/>
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="3.47495334000001" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Height="22.67718" Left="0" Top="362.83488" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" KeepTogether="True" RowCount="0">
+      <TfrxMemoView Name="Memo10" Left="0" Top="0" Width="330.86419623" Height="18.89765" DataField="OBJNAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;OBJNAME&#34;]"/>
+      <TfrxMemoView Name="Memo11" Left="330.86419623" Top="0" Width="74.32229569" Height="18.89765" DataField="SCORE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;SCORE&#34;]"/>
+      <TfrxMemoView Name="Memo12" Left="405.18649192" Top="0" Width="335.2229569" Height="18.89765" DataField="MET_MEANING" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;MET_MEANING&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupFooter Name="GroupFooter1" Height="68.45145333" Left="0" Top="408.18924" Width="740.409927">
+      <TfrxMemoView Name="Memo21" Align="baWidth" Left="0" Top="33.11286333" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+      <TfrxMemoView Name="Memo23" Left="117.33333334" Top="4.23098334000002" Width="147.64316667" Height="22.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[COUNT(MasterData1)]"/>
+      <TfrxMemoView Name="Memo24" Left="437.03958" Top="6.89765001000001" Width="256.9765" Height="22.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[AVG(&#60;Master.&#34;SCORE&#34;&#62;,MasterData1)]"/>
+      <TfrxMemoView Name="Memo20" Left="2.66666666" Top="3.82127333" Width="110.32229569" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Object Count:"/>
+      <TfrxMemoView Name="Memo22" Left="304" Top="6.48793999999998" Width="124.98896236" Height="22.67718" Font.Charset="1" Font.Color="128" Font.Height="-16" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Average Score:"/>
+    </TfrxGroupFooter>
+    <TfrxPageFooter Name="PageFooter1" Height="56.25201" Left="0" Top="536.69326" Width="740.409927">
+      <TfrxMemoView Name="Memo13" Align="baWidth" Left="0" Top="42.46722333" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+      <TfrxMemoView Name="Memo14" Left="2.66666667" Top="17.97340666" Width="79.37013" Height="18.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[Date]"/>
+      <TfrxMemoView Name="Memo15" Left="621.17625334" Top="17.97340666" Width="113.3859" Height="18.89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="Page: [Page#] of [TotalPages#]"/>
+      <TfrxMemoView Name="Memo18" Align="baWidth" Left="0" Top="1.97340667000003" Width="740.409927" Height="11.33859" Color="8388608" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text=""/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

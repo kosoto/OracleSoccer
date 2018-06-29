@@ -1,0 +1,35 @@
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\aq.sql|General Purpose|All AQ Tables in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\cluster.sql|General Purpose|All Clusters in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\context.sql|General Purpose|All Contexts in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\count_all.sql|General Purpose|Count Rows for All Current User Tables
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\dblink.sql|General Purpose|All DB Links in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\dimension.sql|General Purpose|All Dimensions in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\fk.sql|General Purpose|Foreign Keys for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\fk_no_index.sql|General Purpose|Foreign Keys Missing Indexes
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\fk_on.sql|General Purpose|Alter All Foreign Keys Enabled for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\fk_off.sql|General Purpose|Alter All Foreign Keys Disabled for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\index.sql|General Purpose|All Indexes in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\index_columns.sql|General Purpose|All Indexed Columns in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\index_overkill.sql|General Purpose|Highly Indexed Tables
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\index_partitioned.sql|General Purpose|All Partitioned Indexes in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\index_similar.sql|General Purpose|Highly Similar Indexes
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\job.sql|General Purpose|Database Jobs Currently Scheduled
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\library.sql|General Purpose|All Libraries in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\object_type.sql|General Purpose|All Object Types in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\operator.sql|General Purpose|All Operators in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\outline.sql|General Purpose|All Outlines in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\pk.sql|General Purpose|Primary Keys for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\pk_on.sql|General Purpose|Alter All Primary Keys Enabled for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\pk_off.sql|General Purpose|Alter All Primary Keys Disabled for Connected User
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\sequence.sql|General Purpose|All Sequences in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\snapshot.sql|General Purpose|All Snapshots in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\snapshot_log.sql|General Purpose|All Snapshot Logs in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\table.sql|General Purpose|All Tables in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\table_no_index.sql|General Purpose|Tables with No Indexes
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\table_partitioned.sql|General Purpose|All Partitioned Tables in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\trig.sql|General Purpose|All triggers in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\trig_off.sql|General Purpose|Alter All Triggers Offline
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\trig_on.sql|General Purpose|Alter All Triggers Online
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\version.sql|Basic Information|Database Instance and Version Info
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\when.sql|Basic Information|Current Date and Time
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\Schema Objects\whoami.sql|Basic Information|User Connected As

@@ -1,0 +1,120 @@
+Category: Cluster Reports
+Name: Clusters
+ReportDefFileName: .\Clusters.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT
+  OWNER, CLUSTER_NAME, TABLESPACE_NAME, PCT_FREE, PCT_USED, KEY_SIZE,
+  INI_TRANS, MAX_TRANS, INITIAL_EXTENT, NEXT_EXTENT, MIN_EXTENTS,
+  MAX_EXTENTS, PCT_INCREASE, FREELISTS, FREELIST_GROUPS, AVG_BLOCKS_PER_KEY,
+  CLUSTER_TYPE, FUNCTION, HASHKEYS, trim(DEGREE) DEGREE, 
+  trim(INSTANCES) instances, trim(CACHE) cache
+FROM  <DA>CLUSTERS
+WHERE (owner = :me OR owner IN (:other_users))
+ORDER BY owner, cluster_name
+===End SQL===
+Detail 1 Name: Columns
+Detail 1 Master: Master
+Detail 1 Master Keys: OWNER;CLUSTER_NAME;
+Detail 1 Detail Keys: OWNER;CLUSTER_NAME;
+===Begin Detail 1 SQL===
+SELECT c.cluster_owner, c.cluster_name, c.clu_column_name, c.table_name, c.tab_column_name,
+       t.column_id, t.nullable, t.data_type, t.data_precision, t.data_scale , t.data_length
+       ,char_length nchar_length, char_used
+       , t.DATA_TYPE_MOD 
+FROM   (-- we are making this a nested query and renaming the "OWNER" column
+        -- to prevent an "ambiguous column name" error when the query is joined
+		-- to the master dataset.
+        SELECT owner cluster_owner, cluster_name, clu_column_name, table_name,
+               tab_column_name
+	    FROM   dba_clu_columns) c, dba_tab_columns t
+WHERE  c.cluster_owner = t.owner
+AND    c.TABLE_NAME = t.TABLE_NAME
+AND    c.TAB_COLUMN_NAME = t.COLUMN_NAME
+ORDER BY 1, 2, 4, 6
+
+
+
+===End Detail 1 SQL===
+ParamName: other_users
+ParamType: Schema List
+ParamValue: 
+ParamExp: 
+ParamName: me
+ParamType: Current Schema
+ParamValue: 
+ParamExp: 
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38799.6754980324" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6726046875" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2D00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D22436F6C756D6E732200010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Clusters"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" Height="166.2993078" Left="0" Top="170.07885" Width="740.409927" OnAfterCalcHeight="MasterData1OnAfterCalcHeight" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" OutlineText="Master.&#34;CLUSTER_NAME&#34;" PrintIfDetailEmpty="True" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo7" Left="128.50402" Top="0" Width="238.11039" Height="18.89765" Color="14211288" DataField="CLUSTER_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="[Master.&#34;CLUSTER_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="124.72449" Height="18.89765" Color="14211288" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Cluster Name"/>
+      <TfrxMemoView Name="Memo9" Left="86.92919" Top="64.25201" Width="151.18110236" Height="18.89765" DataField="PCT_USED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PCT_USED&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="0" Top="64.25201" Width="75.59055118" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Pct Used"/>
+      <TfrxMemoView Name="Memo11" Left="86.92919" Top="102.04731" Width="151.18110236" Height="18.89765" DataField="INI_TRANS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;INI_TRANS&#34;]"/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="102.04731" Width="75.59055118" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Ini Trans"/>
+      <TfrxMemoView Name="Memo13" Left="502.67749" Top="0" Width="238.11039" Height="18.89765" DataField="TABLESPACE_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;TABLESPACE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo14" Left="377.953" Top="0" Width="122.83464567" Height="18.89765" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Tablespace Name"/>
+      <TfrxMemoView Name="Memo15" Left="86.92919" Top="45.35436" Width="151.18110236" Height="18.89765" DataField="PCT_FREE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PCT_FREE&#34;]"/>
+      <TfrxMemoView Name="Memo16" Left="0" Top="45.35436" Width="75.59055118" Height="18.89765" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Pct Free"/>
+      <TfrxMemoView Name="Memo17" Left="86.92919" Top="83.14966" Width="151.18110236" Height="18.89765" DataField="KEY_SIZE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;KEY_SIZE&#34;]"/>
+      <TfrxMemoView Name="Memo18" Left="0" Top="83.14966" Width="75.59055118" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Key Size"/>
+      <TfrxMemoView Name="Memo20" Left="0" Top="120.94496" Width="75.59055118" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Max Trans"/>
+      <TfrxMemoView Name="Memo19" Left="158.74026" Top="147.40167" Width="42.83467333" Height="18.8976378" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="Col ID"/>
+      <TfrxMemoView Name="Memo21" Left="204.094488188976" Top="147.40167" Width="220.47258333" Height="18.8976378" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="Table Column Name"/>
+      <TfrxMemoView Name="Memo22" Left="423.307086614173" Top="147.40167" Width="224.25211333" Height="18.8976378" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="Cluster Column Name"/>
+      <TfrxMemoView Name="Memo25" Left="646.299212598425" Top="147.40167" Width="90.7086614173228" Height="18.8976378" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="Data Type"/>
+      <TfrxMemoView Name="Memo26" Left="0.377952755905512" Top="147.40167" Width="148.66151333" Height="18.8976378" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="Table Name"/>
+      <TfrxMemoView Name="Memo27" Left="86.92919" Top="120.94496" Width="151.18110236" Height="18.89765" DataField="MAX_TRANS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;MAX_TRANS&#34;]"/>
+      <TfrxMemoView Name="Memo30" Left="340.1577" Top="83.14966" Width="151.18110236" Height="18.89765" DataField="MIN_EXTENTS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;MIN_EXTENTS&#34;]"/>
+      <TfrxMemoView Name="Memo31" Left="249.44898" Top="64.25201" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Next Extent"/>
+      <TfrxMemoView Name="Memo32" Left="249.44898" Top="102.04731" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Max Extents"/>
+      <TfrxMemoView Name="Memo33" Left="340.1577" Top="45.35436" Width="151.18110236" Height="18.89765" DataField="INITIAL_EXTENT" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;INITIAL_EXTENT&#34;]"/>
+      <TfrxMemoView Name="Memo34" Left="340.1577" Top="64.25201" Width="151.18110236" Height="18.89765" DataField="NEXT_EXTENT" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;NEXT_EXTENT&#34;]"/>
+      <TfrxMemoView Name="Memo35" Left="249.44898" Top="45.35436" Width="85.03937008" Height="18.89765" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Initial Extent"/>
+      <TfrxMemoView Name="Memo36" Left="340.1577" Top="102.04731" Width="151.18110236" Height="18.89765" DataField="MAX_EXTENTS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;MAX_EXTENTS&#34;]"/>
+      <TfrxMemoView Name="Memo37" Left="249.44898" Top="83.14966" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Min Extents"/>
+      <TfrxMemoView Name="Memo38" Left="249.44898" Top="120.94496" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Pct Increase"/>
+      <TfrxMemoView Name="Memo39" Left="340.1577" Top="120.94496" Width="151.18110236" Height="18.89765" DataField="PCT_INCREASE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PCT_INCREASE&#34;]"/>
+      <TfrxMemoView Name="Memo40" Left="128.50402" Top="18.89765" Width="151.18110236" Height="18.89765" DataField="CLUSTER_TYPE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;CLUSTER_TYPE&#34;]"/>
+      <TfrxMemoView Name="Memo41" Left="495.11843" Top="64.25201" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="FL Groups"/>
+      <TfrxMemoView Name="Memo42" Left="495.11843" Top="83.14966" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Degree"/>
+      <TfrxMemoView Name="Memo43" Left="585.82715" Top="45.35436" Width="151.18110236" Height="18.89765" DataField="FREELISTS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;FREELISTS&#34;]"/>
+      <TfrxMemoView Name="Memo44" Left="585.82715" Top="64.25201" Width="151.18110236" Height="18.89765" DataField="FREELIST_GROUPS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;FREELIST_GROUPS&#34;]"/>
+      <TfrxMemoView Name="Memo45" Left="495.11843" Top="45.35436" Width="85.03937008" Height="18.89765" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Freelists"/>
+      <TfrxMemoView Name="Memo46" Left="585.82715" Top="83.14966" Width="151.18110236" Height="18.89765" DataField="DEGREE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;DEGREE&#34;]"/>
+      <TfrxMemoView Name="Memo47" Left="0" Top="18.89765" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Cluster Type"/>
+      <TfrxMemoView Name="Memo48" Left="495.11843" Top="102.04731" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Instances"/>
+      <TfrxMemoView Name="Memo49" Left="585.82715" Top="102.04731" Width="151.18110236" Height="18.89765" DataField="INSTANCES" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;INSTANCES&#34;]"/>
+      <TfrxMemoView Name="Memo50" Left="495.11843" Top="120.94496" Width="85.03937008" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Cache"/>
+      <TfrxMemoView Name="Memo51" Left="585.82715" Top="120.94496" Width="151.18110236" Height="18.89765" DataField="CACHE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;CACHE&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="529.1342" Width="740.409927">
+      <TfrxMemoView Name="Memo3" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo4" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo5" Align="baRight" Left="521.197187" Top="1" Width="219.21274" Height="22.67718" HAlign="haRight" Text="Page [Page#] of [TotalPages#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" Height="18.89765" Left="0" Top="105.82684" Width="740.409927" Condition="Master.&#34;OWNER&#34;" OutlineText="Master.&#34;OWNER&#34;">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="737.00835" Height="18.89765" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="Owner:  [Master.&#34;OWNER&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxDetailData Name="DetailData1" Height="18.89765" Left="0" Top="381.73253" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Columns" RowCount="0">
+      <TfrxMemoView Name="Memo6" Left="158.74025268" Top="0" Width="37.7953" Height="18.89765" DataField="COLUMN_ID" DataSet="ReportsForm." DataSetName="Columns" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[Columns.&#34;COLUMN_ID&#34;]"/>
+      <TfrxMemoView Name="Memo23" Left="204.094488188976" Top="0" Width="222.99227" Height="18.89765" DataField="TAB_COLUMN_NAME" DataSet="ReportsForm." DataSetName="Columns" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Columns.&#34;TAB_COLUMN_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo28" Left="423.307086614173" Top="0" Width="222.99227" Height="18.89765" DataField="CLU_COLUMN_NAME" DataSet="ReportsForm." DataSetName="Columns" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Columns.&#34;CLU_COLUMN_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo29" Left="646.299212598425" Top="0" Width="90.7086614173228" Height="18.89765" DataField="DATA_TYPE" DataSet="ReportsForm." DataSetName="Columns" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Columns.&#34;DATA_TYPE&#34;]"/>
+      <TfrxMemoView Name="Memo24" Left="0.37795276" Top="0" Width="158.74026" Height="18.89765" Color="16777215" DataSet="ReportsForm." DataSetName="Columns" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" SuppressRepeated="True" Text="[Columns.&#34;TABLE_NAME&#34;]"/>
+    </TfrxDetailData>
+    <TfrxFooter Name="Footer1" Height="45.35436" Left="0" Top="423.30736" Width="740.409927"/>
+    <TfrxGroupHeader Name="GroupHeader2" Height="0" Left="0" Top="359.05535" Width="740.409927" Condition="Columns.&#34;TABLE_NAME&#34;"/>
+    <TfrxGroupHeader Name="GroupHeader3" Height="0.75590551" Left="0" Top="147.40167" Width="740.409927" Condition="Master.&#34;CLUSTER_NAME&#34;">
+      <TfrxLineView Name="Line1" Left="0" Top="0" Width="737.00835" Height="0" Frame.Typ="4"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

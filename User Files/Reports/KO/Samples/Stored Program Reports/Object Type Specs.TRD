@@ -1,0 +1,66 @@
+﻿Category: 저장된 프로그램 보고서
+Name: 객체 유형 사양
+ReportDefFileName: .\Stored Programs - Type Specs.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT owner, object_name, created, last_ddl_time, status, object_type
+FROM   dba_objects 
+WHERE  (owner = :me OR owner IN (:other_users))
+AND    object_type = 'TYPE'
+ORDER  BY 1, 2
+===End SQL===
+Detail 1 Name: Source
+Detail 1 Master: Master
+Detail 1 Master Keys: OWNER;OBJECT_NAME;OBJECT_TYPE;
+Detail 1 Detail Keys: OWNER;NAME;TYPE;
+===Begin Detail 1 SQL===
+SELECT owner, NAME, TYPE, line, text
+FROM dba_source
+order by owner, name, type, line
+
+===End Detail 1 SQL===
+ParamName: me
+ParamType: Current Schema
+ParamValue: 
+ParamExp: 
+ParamName: other_users
+ParamType: Schema List
+ParamValue: 
+ParamExp: 
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38789.6587120139" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6979206944" ScriptLanguage="PascalScript" ScriptText.Text="procedure DetailData1OnAfterCalcHeight(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  DetailData1.Height := Memo8.Height;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D61737465722200010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D22536F75726365220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="타입 사양"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader1" Height="26.45671" Left="0" Top="105.82684" Width="740.409927" Condition="Master.&#34;OWNER&#34;" OutlineText="&#60;Master.&#34;OWNER&#34;&#62;;">
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="소유자:  [Master.&#34;OWNER&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Height="49.13389" Left="0" ParentFont="False" Top="154.96073" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" OutlineText="&#60;Master.&#34;OBJECT_NAME&#34;&#62;;" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo3" Left="11.33859" Top="0" Width="78.52752" Height="18.89765" Color="15000804" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="이름:"/>
+      <TfrxMemoView Name="Memo4" Left="86.92919" Top="0" Width="338.3859" Height="18.89765" Color="15000804" DataField="OBJECT_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;OBJECT_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="11.33859" Top="18.89765" Width="74.74799" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="작성 날짜:"/>
+      <TfrxMemoView Name="Memo6" Left="86.92919244" Top="18.89765" Width="338.26774583" Height="18.89765" Color="16777215" DataField="CREATED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;CREATED&#34;]"/>
+      <TfrxMemoView Name="Memo11" Left="430.86642" Top="0" Width="112.54329" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="상태:"/>
+      <TfrxMemoView Name="Memo12" Left="551.81138244" Top="0" Width="187.2047" Height="18.89765" Color="16777215" DataField="STATUS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="MS Shell DLG 2" Highlight.Font.Style="1" Highlight.Color="65535" Highlight.Condition="&#60;Master.&#34;STATUS&#34;&#62;='INVALID'" ParentFont="False" Text="[Master.&#34;STATUS&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="430.86642244" Top="18.89765" Width="112.54329" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="마지막 DDL 시간:"/>
+      <TfrxMemoView Name="Memo14" Left="551.81138488" Top="18.89765" Width="187.2047" Height="18.89765" Color="16777215" DataField="LAST_DDL_TIME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;LAST_DDL_TIME&#34;]"/>
+      <TfrxLineView Name="Line2" Left="11.33858268" Top="39.68503693" Width="729.44929" Height="0" Frame.Style="fsDouble" Frame.Typ="4"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="340.1577" Width="740.409927">
+      <TfrxMemoView Name="Memo27" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo28" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo29" Align="baRight" Left="551.433427" Top="1" Width="188.9765" Height="22.67718" HAlign="haRight" Text="[Page#]/[TotalPages#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" Height="17.00787402" Left="0" Top="226.7718" Width="740.409927" OnAfterCalcHeight="DetailData1OnAfterCalcHeight" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Source" RowCount="0">
+      <TfrxMemoView Name="Memo7" Left="11.33859" Top="0" Width="49.13389" Height="17.00787402" DataSet="ReportsForm." DataSetName="Source" FlowTo="Memo8" Font.Charset="1" Font.Color="-16777208" Font.Height="-12" Font.Name="Courier New" Font.Style="0" ParentFont="False" Text="[Source.&#34;LINE&#34;]:"/>
+      <TfrxMemoView Name="Memo8" Left="60.47248" Top="0" Width="680.3154" Height="17.00787402" StretchMode="smMaxHeight" DataField="TEXT" DataSet="ReportsForm." DataSetName="Source" Font.Charset="1" Font.Color="-16777208" Font.Height="-12" Font.Name="Courier New" Font.Style="0" ParentFont="False" Text="[Source.&#34;TEXT&#34;]"/>
+    </TfrxDetailData>
+    <TfrxFooter Name="Footer1" Height="11.33859" Left="0" Top="268.34663" Width="740.409927">
+      <TfrxLineView Name="Line1" Left="11.33859" Top="7.55905999999999" Width="729.44929" Height="0" Frame.Style="fsDouble" Frame.Typ="4"/>
+    </TfrxFooter>
+  </TfrxReportPage>
+</TfrxReport>

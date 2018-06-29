@@ -1,0 +1,63 @@
+﻿Category: DB健康度与性能报告
+Name: 用户命中率
+ReportDefFileName: .\User Hit Ratios.fr3
+===Begin Comments===
+This report identifies permanent tablespaces >= 90% full, 
+and do not have autoextend enabled.
+===End Comments===
+===Begin SQL===
+SELECT   (DECODE ((INITCAP (se.username)), NULL, 'SYS', se.username)
+          ) username,
+          se.SID usersession,
+          SUM (DECODE (sn.NAME, 'consistent gets', ss.VALUE, 0)) consisgets,
+          SUM (DECODE (sn.NAME, 'db block gets', ss.VALUE, 0)) dbblkgets,
+          SUM (DECODE (sn.NAME, 'physical reads', ss.VALUE, 0)) physreads,
+          ROUND(  (  SUM (DECODE (sn.NAME, 'consistent gets', ss.VALUE, 0))
+             + SUM (DECODE (sn.NAME, 'db block gets', ss.VALUE, 0))
+             - SUM (DECODE (sn.NAME, 'physical reads', ss.VALUE, 0))
+            )
+          / (  SUM (DECODE (sn.NAME, 'consistent gets', ss.VALUE, 0))
+             + SUM (DECODE (sn.NAME, 'db block gets', ss.VALUE, 0))
+             + 1
+            ), 6)
+          * 100 hitratio,
+          MAX (UPPER(ins.instance_name)) instancename
+    FROM v$sesstat ss, v$statname sn, v$session se, v$instance ins
+   WHERE ss.SID = se.SID
+     AND sn.statistic# = ss.statistic#
+     AND ss.VALUE != 0
+     AND sn.NAME IN ('db block gets', 'consistent gets', 'physical reads')
+GROUP BY se.username, se.SID
+ORDER BY 1,2
+===End SQL===
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38800.4040789236" ReportOptions.Description.Text="" ReportOptions.LastChange="41134.4785203588" ScriptLanguage="PascalScript" ScriptText.Text="procedure MasterData1OnAfterCalcHeight(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  MasterData1.Height := Memo9.height;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F7002080844617461736574730101062C20446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010677204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010675204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010680204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010679204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010681204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D2231220001069E204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" ShowHint="False" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="用户命中率([Master.&#34;INSTANCENAME&#34;])"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" Height="18.89765" Left="0" Top="162.51979" Width="740.409927" OnAfterCalcHeight="MasterData1OnAfterCalcHeight" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" RowCount="0">
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="229.02099452" Height="18.89765" ShowHint="False" DataField="USERNAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;USERNAME&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="417.99749452" Top="0" Width="109.2465243" Height="18.89765" ShowHint="False" StretchMode="smActualHeight" DataField="CONSISGETS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;CONSISGETS&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="302.3624" Top="0" Width="115.63509452" Height="18.89765" ShowHint="False" DataField="CONSISGETS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;CONSISGETS&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="532.91373" Top="0" Width="104.29650452" Height="18.89765" ShowHint="False" DataField="PHYSREADS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;PHYSREADS&#34;]"/>
+      <TfrxMemoView Name="Memo6" Left="650.07916" Top="0" Width="92.95791452" Height="18.89765" ShowHint="False" DataField="HITRATIO" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;HITRATIO&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="230.55133" Top="0" Width="66.50120452" Height="18.89765" ShowHint="False" DataField="USERSESSION" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;USERSESSION&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="241.88992" Width="740.409927">
+      <TfrxMemoView Name="Memo11" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" ShowHint="False" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="1" Width="0" Height="22.67718" ShowHint="False" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo13" Align="baRight" Left="498.520007" Top="1" Width="241.88992" Height="22.67718" ShowHint="False" HAlign="haRight" Text="Page [Page#] of [TotalPages#]"/>
+    </TfrxPageFooter>
+    <TfrxPageHeader Name="PageHeader1" Height="35.27561333" Left="0" Top="68.03154" Width="740.409927">
+      <TfrxMemoView Name="Memo2" Left="1.25984333" Top="15.11812" Width="139.84261" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="User Name"/>
+      <TfrxMemoView Name="Memo3" Left="257.00804" Top="15.11812" Width="37.7953" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" HAlign="haRight" ParentFont="False" Text="SID"/>
+      <TfrxMemoView Name="Memo10" Left="313.70099" Top="15.11812" Width="105.82684" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" HAlign="haRight" ParentFont="False" Text="Consistent Gets"/>
+      <TfrxMemoView Name="Memo14" Left="419.52783" Top="15.11812" Width="109.60637" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" HAlign="haRight" ParentFont="False" Text="DB Block Gets"/>
+      <TfrxMemoView Name="Memo15" Left="548.03185" Top="15.11812" Width="90.70872" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" HAlign="haRight" ParentFont="False" Text="Phys Reads"/>
+      <TfrxMemoView Name="Memo16" Left="646.29963" Top="15.11812" Width="90.70872" Height="20.15749333" ShowHint="False" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" HAlign="haRight" ParentFont="False" Text="Hit Ratio"/>
+    </TfrxPageHeader>
+  </TfrxReportPage>
+</TfrxReport>

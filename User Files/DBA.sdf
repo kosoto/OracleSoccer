@@ -1,0 +1,35 @@
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\control_file.sql|General Purpose|All Control Files in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\cpu.sql|General Purpose|Top Sessions by CPU consumption
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\db.sql|General Purpose|Database Basic Info
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\directory.sql|General Purpose|All Directories in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\init.sql|General Purpose|Database INIT.ORA Info
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\io.sql|General Purpose|Top Tablespaces by IO consumption
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\io_wait.sql|General Purpose|Top IO Waits in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\lock.sql|General Purpose|Database Locks Being Held
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\profile.sql|General Purpose|All Profiles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\rbs.sql|General Purpose|Database Rollback Segments
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\rbs_activity.sql|General Purpose|Rollback Segment Activity in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\rbs_off.sql|General Purpose|Alter All Rollback Segments Offline
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\rbs_on.sql|General Purpose|Alter All Rollback Segments Online
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\redo_log.sql|General Purpose|All Redo Logs in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role.sql|General Purpose|All Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role_granted.sql|General Purpose|All Granted Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role_granted_role.sql|General Purpose|All Roles Granted to Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role_user.sql|General Purpose|All User Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role_user_granted.sql|General Purpose|All Granted User Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\role_user_granted_role.sql|General Purpose|All User Roles Granted to Roles in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\session_events.sql|General Purpose|Session Events
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\system_events.sql|General Purpose|System Events
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\sga.sql|General Purpose|SGA Memory Map (overall)
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\throw_extent.sql|General Purpose|Segments that cannot extend
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\tspc.sql|General Purpose|Tablespace Basic Information
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\tspc_coal.sql|General Purpose|Alter All Tablespaces Coalesce
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\tspc_default.sql|General Purpose|Default Tablespace User Counts
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\tspc_off.sql|General Purpose|Alter All Tablespaces Offline
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\tspc_on.sql|General Purpose|Alter All Tablespaces Online
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\users.sql|General Purpose|All Users in Database
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\version.sql|Basic Information|Database Instance and Version Info
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\what.sql|General Purpose|Tablespace Object Breakdown Information
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\when.sql|Basic Information|Current Date and Time
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\who.sql|General Purpose|Database Sessions Active
+C:\Users\user\AppData\Roaming\Quest Software\Toad for Oracle\13.0 trial\ScriptMgr\DBA\whoami.sql|Basic Information|User Connected As

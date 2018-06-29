@@ -1,0 +1,139 @@
+﻿Category: 테이블 및 인덱스 보고서
+Name: 테이블 및 인덱스(열 데이터 유형 없음 - 더 빠름)
+ReportDefFileName: .\Tables - Tables and Indexes.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT * FROM
+(-- The query is nested is because OWNER is one of the master fields for the detail
+ -- query, and there is an OWNER column in both DBA_ALL_TABLES and DBA_OBJECTS.  
+ -- Making this a nested query prevents an "ambiguous column name" error when
+ -- the detail set is joined.
+ SELECT t.owner, t.table_name, t.tablespace_name, t.cluster_name, t.pct_free, t.pct_used,
+        t.max_extents, t.num_rows, t.partitioned, t.TEMPORARY , t.BUFFER_POOL, o.created,
+ 	    o.last_ddl_time
+ FROM   <DA>all_tables t, <DA>objects o
+ WHERE  t.owner = o.owner
+ AND    t.table_name = o.object_name
+ AND    (o.owner = :me OR o.owner IN (:other_users))
+ AND    o.object_type = 'TABLE')
+ ORDER BY 1,2
+===End SQL===
+Detail 1 Name: Indexes
+Detail 1 Master: Master
+Detail 1 Master Keys: OWNER;TABLE_NAME;
+Detail 1 Detail Keys: TABLE_OWNER;TABLE_NAME;
+===Begin Detail 1 SQL===
+SELECT table_owner, table_name, owner, index_name, Uniqueness, 
+       tablespace_name, bLevel, leaf_blocks, distinct_keys, status
+FROM   <DA>indexes
+ORDER BY owner, index_name
+
+
+
+
+
+
+
+
+===End Detail 1 SQL===
+Detail 2 Name: Index Cols
+Detail 2 Master: Indexes
+Detail 2 Master Keys: OWNER;INDEX_NAME;
+Detail 2 Detail Keys: INDEX_OWNER;INDEX_NAME;
+===Begin Detail 2 SQL===
+SELECT index_owner, index_name, column_position, column_name, descend 
+FROM   <DA>ind_columns
+ORDER BY 1,2,3
+
+
+
+
+
+
+
+===End Detail 2 SQL===
+ParamName: me
+ParamType: Current Schema
+ParamValue: 
+ParamExp: 
+ParamName: other_users
+ParamType: Schema List
+ParamValue: 
+ParamExp: 
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38789.6587120139" ReportOptions.Description.Text="" ReportOptions.LastChange="38807.3535813079" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C3000000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D22496E64657820436F6C732200010C2D00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D22496E64657865732200010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="테이블 및 인덱스"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader1" Height="26.45671" Left="0" Top="105.82684" Width="740.409927" Condition="Master.&#34;OWNER&#34;" KeepChild="True" OutlineText="&#60;Master.&#34;OWNER&#34;&#62;;">
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="스키마:  [Master.&#34;OWNER&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Height="102.04731" Left="0" ParentFont="False" Top="196.53556" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" OutlineText="&#60;Master.&#34;TABLE_NAME&#34;&#62;;" RowCount="0">
+      <TfrxMemoView Name="Memo7" Left="0" Top="1.51178661" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="클러스터"/>
+      <TfrxMemoView Name="Memo8" Left="157.89765" Top="1.51178661" Width="225" Height="18.89765" DataField="CLUSTER_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;CLUSTER_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="0" Top="20.40942441" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="PCT Free"/>
+      <TfrxMemoView Name="Memo10" Left="157.89765" Top="20.40942441" Width="78" Height="18.89765" DataField="PCT_FREE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PCT_FREE&#34;]"/>
+      <TfrxMemoView Name="Memo11" Left="0" Top="40.06296772" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Pct Used"/>
+      <TfrxMemoView Name="Memo12" Left="157.89765" Top="40.06296772" Width="78" Height="18.89765" DataField="PCT_USED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PCT_USED&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="0" Top="59.71651102" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="최대 익스텐트"/>
+      <TfrxMemoView Name="Memo14" Left="157.89765" Top="59.71651102" Width="78" Height="18.89765" DataField="MAX_EXTENTS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;MAX_EXTENTS&#34;]"/>
+      <TfrxMemoView Name="Memo15" Left="408.18924" Top="0" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="행수"/>
+      <TfrxMemoView Name="Memo17" Left="408.18924" Top="19.65354331" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="구분됨"/>
+      <TfrxMemoView Name="Memo18" Left="550.96877" Top="19.65354331" Width="131.82684" Height="18.89765" DataField="PARTITIONED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;PARTITIONED&#34;]"/>
+      <TfrxMemoView Name="Memo19" Left="408.18924" Top="39.30708661" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="임시"/>
+      <TfrxMemoView Name="Memo20" Left="550.96877" Top="39.30708661" Width="135.72449" Height="18.89765" DataField="TEMPORARY" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;TEMPORARY&#34;]"/>
+      <TfrxMemoView Name="Memo21" Left="0" Top="80.88190441" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="버퍼 풀"/>
+      <TfrxMemoView Name="Memo22" Left="157.89765" Top="80.88190441" Width="135.37013" Height="18.89765" DataField="BUFFER_POOL" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;BUFFER_POOL&#34;]"/>
+      <TfrxMemoView Name="Memo23" Left="408.18924" Top="58.96061772" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="생성됨"/>
+      <TfrxMemoView Name="Memo24" Left="550.96877" Top="58.96061772" Width="136" Height="18.89765" DataField="CREATED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;CREATED&#34;]"/>
+      <TfrxMemoView Name="Memo25" Left="408.18924" Top="78.61416102" Width="139" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="마지막 DDL 시간"/>
+      <TfrxMemoView Name="Memo26" Left="550.96877" Top="78.61416102" Width="136" Height="18.89765" DataField="LAST_DDL_TIME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;LAST_DDL_TIME&#34;]"/>
+      <TfrxMemoView Name="Memo16" Left="551.81138" Top="0" Width="78" Height="18.89765" DataField="NUM_ROWS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;NUM_ROWS&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="566.9295" Width="740.409927">
+      <TfrxMemoView Name="Memo27" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo28" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo29" Align="baRight" Left="528.756247" Top="1" Width="211.65368" Height="22.67718" HAlign="haRight" Text="[Page#]/[TotalPages#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" Height="110.11024924" Left="0" Top="321.26005" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Indexes" OutlineText="&#60;Indexes.&#34;INDEX_NAME&#34;&#62;;" RowCount="0">
+      <TfrxMemoView Name="Memo31" Left="157.98425197" Top="11.3385778" Width="238.11039" Height="18.89765" Color="15790320" DataField="OWNER" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;OWNER&#34;]"/>
+      <TfrxMemoView Name="Memo32" Left="11.33859" Top="11.3385778" Width="147.40167" Height="18.89765" Color="15790320" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="인덱스 소유자"/>
+      <TfrxMemoView Name="Memo33" Left="157.98425197" Top="30.9921211" Width="238.11039" Height="18.89765" Color="15790320" DataField="INDEX_NAME" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;INDEX_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo37" Left="11.33859" Top="30.9921211" Width="147.40167" Height="18.89765" Color="15790320" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="인덱스 이름"/>
+      <TfrxMemoView Name="Memo38" Left="157.98425197" Top="70.29920772" Width="71.81107" Height="18.89765" DataField="UNIQUENESS" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;UNIQUENESS&#34;]"/>
+      <TfrxMemoView Name="Memo42" Left="11.33859" Top="70.29920772" Width="139.84261" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="고유"/>
+      <TfrxMemoView Name="Memo43" Left="157.98425197" Top="50.64566441" Width="238.11039" Height="18.89765" DataField="TABLESPACE_NAME" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="MS Shell DLG 2" Highlight.Font.Style="1" Highlight.Color="65535" Highlight.Condition="(&#60;Indexes.&#34;TABLESPACE_NAME&#34;&#62;='SYSTEM') and (&#60;Indexes.&#34;OWNER&#34;&#62;&#60;&#62;'SYS')" ParentFont="False" Text="[Indexes.&#34;TABLESPACE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo44" Left="11.33859" Top="50.64566441" Width="139.84261" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="테이블스페이스 이름"/>
+      <TfrxMemoView Name="Memo45" Left="566.92913386" Top="30.9921211" Width="79.37013" Height="18.89765" DataField="BLEVEL" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;BLEVEL&#34;]"/>
+      <TfrxMemoView Name="Memo46" Left="408.18897638" Top="30.9921211" Width="105.82684" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="BLevel"/>
+      <TfrxMemoView Name="Memo47" Left="566.92913386" Top="50.64566441" Width="79.37013" Height="18.89765" DataField="LEAF_BLOCKS" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;LEAF_BLOCKS&#34;]"/>
+      <TfrxMemoView Name="Memo48" Left="408.18897638" Top="50.6456692913385" Width="105.82684" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="리프 블록"/>
+      <TfrxMemoView Name="Memo49" Left="566.92913386" Top="70.29920772" Width="79.37013" Height="18.89765" DataField="DISTINCT_KEYS" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Indexes.&#34;DISTINCT_KEYS&#34;]"/>
+      <TfrxMemoView Name="Memo50" Left="408.18897638" Top="70.29920772" Width="105.82684" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="고유 키"/>
+      <TfrxMemoView Name="Memo51" Left="566.92913386" Top="11.3385778" Width="158.74026" Height="18.89765" DataField="STATUS" DataSet="ReportsForm." DataSetName="Indexes" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="MS Shell DLG 2" Highlight.Font.Style="1" Highlight.Color="65535" Highlight.Condition="&#60;Indexes.&#34;STATUS&#34;&#62;='UNUSABLE'" ParentFont="False" Text="[Indexes.&#34;STATUS&#34;]"/>
+      <TfrxMemoView Name="Memo52" Left="408.18897638" Top="11.3385778" Width="105.82684" Height="18.89765" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="상태"/>
+      <TfrxMemoView Name="Memo30" Left="70.55122667" Top="89.95275591" Width="94.48822559" Height="20.15749333" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="열 이름"/>
+      <TfrxMemoView Name="Memo34" Left="30.23624" Top="89.95275591" Width="37.79527559" Height="20.15749333" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="ID"/>
+      <TfrxMemoView Name="Memo35" Left="309.92146" Top="89.95275591" Width="120.94493559" Height="20.15749333" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="5" ParentFont="False" Text="내림차순"/>
+      <TfrxLineView Name="Line2" Left="11.33859" Top="3.77953000000002" Width="714.33117" Height="0" Frame.Style="fsDot" Frame.Typ="4"/>
+    </TfrxDetailData>
+    <TfrxSubdetailData Name="SubdetailData1" Height="17.00787402" Left="0" Top="453.5436" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Index Cols" RowCount="0">
+      <TfrxMemoView Name="Memo39" Left="30.23624" Top="0" Width="37.7953" Height="17.00787402" DataField="COLUMN_POSITION" DataSet="ReportsForm." DataSetName="Index Cols" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Index Cols.&#34;COLUMN_POSITION&#34;]"/>
+      <TfrxMemoView Name="Memo40" Left="68.03155953" Top="0" Width="238.11039" Height="17.00787402" DataField="COLUMN_NAME" DataSet="ReportsForm." DataSetName="Index Cols" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Index Cols.&#34;COLUMN_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo41" Left="309.92147953" Top="0" Width="188.97637795" Height="17.00787402" DataField="DESCEND" DataSet="ReportsForm." DataSetName="Index Cols" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Index Cols.&#34;DESCEND&#34;]"/>
+    </TfrxSubdetailData>
+    <TfrxGroupFooter Name="GroupFooter1" Height="11.33859" Left="0" Top="495.11843" Width="740.409927" KeepChild="True">
+      <TfrxLineView Name="Line1" Left="0" Top="3.77953000000008" Width="740.78788" Height="0" Frame.Typ="4"/>
+    </TfrxGroupFooter>
+    <TfrxGroupHeader Name="GroupHeader2" Height="18.89765" Left="0" Top="154.96073" Width="740.409927" Condition="Master.&#34;TABLE_NAME&#34;">
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="157.89765" Height="18.89765" Color="15000804" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="테이블 이름"/>
+      <TfrxMemoView Name="Memo4" Left="157.89765" Top="0" Width="251.45671" Height="18.89765" Color="15000804" DataField="TABLE_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Text="[Master.&#34;TABLE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="408.18924" Top="0" Width="146.55906" Height="18.89765" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="테이블스페이스"/>
+      <TfrxMemoView Name="Memo6" Left="550.96877" Top="0" Width="187.2047" Height="18.89765" Color="16777215" DataField="TABLESPACE_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="MS Shell DLG 2" Highlight.Font.Style="1" Highlight.Color="65535" Highlight.Condition="(&#60;Master.&#34;TABLESPACE_NAME&#34;&#62;='SYSTEM') and (&#60;Master.&#34;OWNER&#34;&#62;&#60;&#62;'SYS')" ParentFont="False" Text="[Master.&#34;TABLESPACE_NAME&#34;]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

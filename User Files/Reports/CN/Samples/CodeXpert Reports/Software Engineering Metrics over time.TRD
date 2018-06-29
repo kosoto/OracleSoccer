@@ -1,0 +1,58 @@
+﻿Category: 代码分析报告
+Name: 跨时的软件工程度量
+ReportDefFileName: .\Code Analysis - Software Engineering Metrics Over Time.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT CR.RUNDATE AS RunDate, 
+         SUM (DECODE (met_name, 'Number of Statements', SCORE, 0)) /100  AS NumStatements, 
+         SUM (DECODE (met_name, 'Halstead Volume', SCORE, 0)) / 100 AS Halstead, 
+         SUM (DECODE (met_name, 'McCabe''s Cyclomatic Complexity', SCORE, 0)) /100 AS McCabes, 
+         SUM (DECODE (met_name, 'Maintainability Index', SCORE, 0)) / 100  AS Maintainability, 
+         SUM (DECODE (met_name, 'Toad Code Rating(TCR)', SCORE, 0)) /100 AS TCR 
+    FROM CX_XPERTITEMS CX, CX_METRICS CM, CX_XPERTRUN CR 
+   WHERE     cx.OBJNAME = :objname
+         AND (CX.RUNNAME = CR.RUNNAME) 
+         AND (CX.RUNNAME = CM.RUNNAME AND CX.ITEMNO = CM.ITEMNO) 
+GROUP BY CR.RUNDATE 
+ORDER BY CR.RUNDATE
+===End SQL===
+ParamName: objname
+ParamType: String
+ParamValue: DEBUGHOBBIT
+ParamExp: 
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<TfrxReport Version="4.12" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="4095" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="40940.6806264352" ReportOptions.Description.Text="" ReportOptions.LastChange="40940.6846304167" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F7002080844617461736574730101062C20446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220001061620446174615365744E616D653D2252756E496E666F220000095661726961626C65730100055374796C6501010680204E616D653D225469746C652220436F6C6F723D22383432313530342220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D224D53205368656C6C20444C4720322220466F6E742E5374796C653D2231220001067E204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D224D53205368656C6C20444C4720322220466F6E742E5374796C653D22312200010683204E616D653D2247726F7570206865616465722220436F6C6F723D2231363035333439322220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D224D53205368656C6C20444C4720322220466F6E742E5374796C653D22312200010682204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D224D53205368656C6C20444C4720322220466F6E742E5374796C653D2230220001068A204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D224D53205368656C6C20444C4720322220466F6E742E5374796C653D2231220001069E204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="297" PaperHeight="210" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="1046.92981">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="1046.92981" Height="22.67718" ShowHint="False" Color="8421504" Font.Charset="1" Font.Color="16777215" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" Style="Title" VAlign="vaCenter" Text="依照日期排列的代码分析软件度量"/>
+    </TfrxReportTitle>
+    <TfrxPageHeader Name="PageHeader1" Height="22.67718" Left="0" Top="68.03154" Width="1046.92981">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="1046.92913385827" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="8" Frame.Width="2" ParentFont="False" Style="Header line" Text=""/>
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="125" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Header" Text="语句"/>
+      <TfrxMemoView Name="Memo4" Left="125" Top="0" Width="76" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Header" Text="HALSTEAD"/>
+      <TfrxMemoView Name="Memo5" Left="246.35436" Top="0" Width="76" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Header" Text="MCCABES"/>
+      <TfrxMemoView Name="Memo6" Left="363.92919" Top="0" Width="131" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Header" Text="可维护性"/>
+      <TfrxMemoView Name="Memo7" Left="517.60637" Top="0" Width="76" Height="22.67718" ShowHint="False" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Header" Text="TCR（代码分级）"/>
+    </TfrxPageHeader>
+    <TfrxGroupHeader Name="GroupHeader1" Height="26.45671" Left="0" Top="151.1812" Width="1046.92981" Condition="Master.&#34;RUNDATE&#34;">
+      <TfrxMemoView Name="Memo8" Align="baWidth" Left="0" Top="0" Width="1046.92981" Height="22.67718" ShowHint="False" Color="16053492" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="128" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" Style="Group header" VAlign="vaCenter" Text="[Master.&#34;RUNDATE&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Height="18.89765" Left="0" Top="200.31509" Width="1046.92981" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" RowCount="0">
+      <TfrxMemoView Name="Memo9" Left="3.77953" Top="0" Width="94.76376" Height="18.89765" ShowHint="False" DataField="NUMSTATEMENTS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;NUMSTATEMENTS&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="125" Top="0" Width="76" Height="18.89765" ShowHint="False" DataField="HALSTEAD" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;HALSTEAD&#34;]"/>
+      <TfrxMemoView Name="Memo11" Left="246.35436" Top="0" Width="76" Height="18.89765" ShowHint="False" DataField="MCCABES" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;MCCABES&#34;]"/>
+      <TfrxMemoView Name="Memo12" Left="363.92919" Top="0" Width="131" Height="18.89765" ShowHint="False" DataField="MAINTAINABILITY" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;MAINTAINABILITY&#34;]"/>
+      <TfrxMemoView Name="Memo13" Left="517.60637" Top="0" Width="76" Height="18.89765" ShowHint="False" DataField="TCR" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;TCR&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupFooter Name="GroupFooter1" Height="0" Left="0" Top="241.88992" Width="1046.92981"/>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="302.3624" Width="1046.92981">
+      <TfrxMemoView Name="Memo14" Align="baWidth" Left="0" Top="0" Width="1046.92981" Height="0" ShowHint="False" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo15" Left="0" Top="1" Width="0" Height="22.67718" ShowHint="False" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo16" Align="baRight" Left="971.33921" Top="1" Width="75.5906" Height="22.67718" ShowHint="False" HAlign="haRight" Text="页 [Page#]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

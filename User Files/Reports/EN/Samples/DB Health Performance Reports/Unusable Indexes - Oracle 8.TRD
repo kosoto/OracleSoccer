@@ -1,0 +1,52 @@
+Category: DB Health / Performance Reports
+Name: Unusable Indexes - Oracle 8
+ReportDefFileName: .\Unusable Indexes8.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT owner, index_name, table_owner, table_name, NULL partition_name,
+       TO_CHAR(num_rows) num_rows, last_analyzed
+FROM   <DA>INDEXES 
+WHERE  tablespace_name IS NOT NULL
+AND    status = 'UNUSABLE'
+UNION ALL
+SELECT i.owner, i.index_name, i.table_owner, i.table_name,  p.partition_name,
+       TO_CHAR(p.num_rows), p.last_analyzed
+FROM   <DA>IND_PARTITIONS p, <DA>INDEXES i  
+WHERE  p.index_owner = i.owner
+AND    p.index_name = i.index_name
+AND    i.partitioned = 'YES'
+AND    P.STATUS = 'UNUSABLE'
+===End SQL===
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38800.4040789236" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6896496296" ScriptLanguage="PascalScript" ScriptText.Text="procedure Memo16OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  Memo16.visible := not (&#60;Master.&#34;NUM_ROWS&#34;&#62; = '');&#13;&#10;  Memo17.visible := Memo16.visible;&#13;&#10;  Memo18.visible := Memo16.visible;&#13;&#10;  Memo19.visible := Memo16.visible;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="MS Shell DLG 2" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Unusable Indexes and Partitions"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader1" Height="22.67718" Left="0" Top="105.82684" Width="740.409927" Condition="Master.&#34;OWNER&#34;" OutlineText="Master.&#34;OWNER&#34;">
+      <TfrxMemoView Name="Memo6" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="-16777201" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="Schema:  [Master.&#34;OWNER&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData1" Height="76.85044333" Left="0" Top="151.1812" Width="740.409927" OnAfterCalcHeight="MasterData1OnAfterCalcHeight" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" OutlineText="Master.&#34;INDEX_NAME&#34;" RowCount="0">
+      <TfrxMemoView Name="Memo8" Left="132.28346457" Top="0" Width="244.13911452" Height="18.89765" Color="15790320" DataField="INDEX_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="[Master.&#34;INDEX_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo2" Left="11.33858268" Top="0" Width="120.94496" Height="20.15749333" Color="15790320" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Index Name"/>
+      <TfrxMemoView Name="Memo3" Left="132.28346457" Top="18.89765" Width="240.35958452" Height="18.89765" DataField="TABLE_OWNER" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;TABLE_OWNER&#34;]"/>
+      <TfrxMemoView Name="Memo4" Left="11.33858268" Top="18.89765" Width="120.94496" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Table Owner"/>
+      <TfrxMemoView Name="Memo5" Left="498.8976378" Top="18.89765" Width="240.35958452" Height="18.89765" DataField="TABLE_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;TABLE_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="377.95275591" Top="18.89765" Width="120.94496" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Table Name"/>
+      <TfrxMemoView Name="Memo9" Left="132.28346457" Top="37.7953" Width="240.35958452" Height="18.89765" DataField="PARTITION_NAME" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;PARTITION_NAME&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="11.33858268" Top="37.7953" Width="120.94496" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Partition Name"/>
+      <TfrxMemoView Name="Memo16" Left="132.28346457" Top="56.69295" Width="244.13911452" Height="18.89765" OnBeforePrint="Memo16OnBeforePrint" DataField="NUM_ROWS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;NUM_ROWS&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="11.33858268" Top="56.69295" Width="90.70872" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Num Rows"/>
+      <TfrxMemoView Name="Memo18" Left="498.8976378" Top="56.69295" Width="240.35958452" Height="18.89765" DataField="LAST_ANALYZED" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;LAST_ANALYZED&#34;]"/>
+      <TfrxMemoView Name="Memo19" Left="377.95275591" Top="56.69295" Width="90.70872" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="MS Shell DLG 2" Font.Style="0" ParentFont="False" Text="Last Analyzed"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="287.24428" Width="740.409927">
+      <TfrxMemoView Name="Memo11" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo13" Align="baRight" Left="498.520007" Top="1" Width="241.88992" Height="22.67718" HAlign="haRight" Text="Page [Page#] of [TotalPages#]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

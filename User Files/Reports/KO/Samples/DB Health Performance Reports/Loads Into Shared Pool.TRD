@@ -1,0 +1,42 @@
+﻿Category: DB 상태/성능 보고서
+Name: 공유 풀로 로드
+ReportDefFileName: .\Loads Into Shared Pool.fr3
+===Begin Comments===
+
+===End Comments===
+===Begin SQL===
+SELECT   doc.owner, doc.NAME, doc.TYPE, doc.loads, doc.sharable_mem,
+         upper(ins.instance_name) instance_name
+FROM     v$db_object_cache doc, v$instance ins
+WHERE    doc.loads > 2
+AND      doc.TYPE IN ('PACKAGE', 'PACKAGE BODY', 'FUNCTION', 'PROCEDURE')
+ORDER BY doc.loads DESC
+===End SQL===
+===Begin Report Definition===
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Name="" Version="3.21" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Default" ReportOptions.CreateDate="38800.4040789236" ReportOptions.Description.Text="" ReportOptions.LastChange="38806.6750482986" ScriptLanguage="PascalScript" ScriptText.Text="begin&#13;&#10;&#13;&#10;end." PropData="044C656674020803546F70020E08446174617365747301010C2C00000020446174615365743D225265706F727473466F726D2E2220446174615365744E616D653D224D6173746572220000095661726961626C65730100055374796C6501010C77000000204E616D653D225469746C652220436F6C6F723D22383338383630382220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D2231363737373231352220466F6E742E4865696768743D222D31362220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C75000000204E616D653D224865616465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D223132382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C80000000204E616D653D2247726F7570206865616465722220436F6C6F723D2231353739303332302220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C79000000204E616D653D22446174612220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22302200010C81000000204E616D653D2247726F757020666F6F7465722220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D22312200010C9E000000204E616D653D22486561646572206C696E652220436F6C6F723D223533363837303931312220466F6E742E436861727365743D22312220466F6E742E436F6C6F723D222D31363737373230382220466F6E742E4865696768743D222D31332220466F6E742E4E616D653D22417269616C2220466F6E742E5374796C653D223022204672616D652E5479703D223822204672616D652E57696474683D2232220000">
+  <TfrxReportPage Name="Page1" PaperWidth="215.9" PaperHeight="279.4" PaperSize="1" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="26.45671" Left="0" Top="18.89765" Width="740.409927">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="22.67718" Color="16777215" Font.Charset="1" Font.Color="8388608" Font.Height="-16" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[Master.&#34;INSTANCE_NAME&#34;]에 대한 공유 풀로 로드"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" Height="18.89765" Left="0" Top="151.1812" Width="740.409927" ColumnWidth="0" ColumnGap="0" DataSet="ReportsForm." DataSetName="Master" OutlineText="Master.&#34;NAME&#34;" RowCount="0">
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="217.68240452" Height="18.89765" DataField="OWNER" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;OWNER&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="636.85038882" Top="0" Width="103.55906" Height="18.89765" DataField="SHARABLE_MEM" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;SHARABLE_MEM&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="595.63540452" Top="0" Width="41.2149843" Height="18.89765" DataField="LOADS" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Style="Data" Text="[Master.&#34;LOADS&#34;]"/>
+      <TfrxMemoView Name="Memo7" Left="226.7718" Top="0" Width="244.13911452" Height="18.89765" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;NAME&#34;]"/>
+      <TfrxMemoView Name="Memo14" Left="472.44125" Top="0" Width="111.85556452" Height="18.89765" DataField="TYPE" DataSet="ReportsForm." DataSetName="Master" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Style="Data" Text="[Master.&#34;TYPE&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="26.45671" Left="0" Top="230.55133" Width="740.409927">
+      <TfrxMemoView Name="Memo11" Align="baWidth" Left="0" Top="0" Width="740.409927" Height="0" Frame.Typ="4" Frame.Width="2" Text=""/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="1" Width="0" Height="22.67718" AutoWidth="True" Text="[Date] [Time]"/>
+      <TfrxMemoView Name="Memo13" Align="baRight" Left="498.520007" Top="1" Width="241.88992" Height="22.67718" HAlign="haRight" Text="[Page#]/[TotalPages#]페이지"/>
+    </TfrxPageFooter>
+    <TfrxPageHeader Name="PageHeader1" Height="22.67718" Left="0" Top="68.03154" Width="740.409927">
+      <TfrxMemoView Name="Memo2" Left="0" Top="3.77952999999999" Width="143.62214" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="Arial" Font.Style="4" ParentFont="False" Text="객체 소유자"/>
+      <TfrxMemoView Name="Memo3" Left="580.78777667" Top="3.77952999999999" Width="56.69295" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="Arial" Font.Style="4" HAlign="haRight" ParentFont="False" Text="로드"/>
+      <TfrxMemoView Name="Memo4" Left="641.26025667" Top="3.77952999999999" Width="98.26778" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="Arial" Font.Style="4" HAlign="haRight" ParentFont="False" Text="공유 가능한 메모리"/>
+      <TfrxMemoView Name="Memo5" Left="226.7718" Top="3.77952999999999" Width="90.70872" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="Arial" Font.Style="4" ParentFont="False" Text="객체 이름"/>
+      <TfrxMemoView Name="Memo6" Left="472.44125" Top="3.77952999999999" Width="98.26778" Height="20.15749333" Font.Charset="1" Font.Color="8388608" Font.Height="-13" Font.Name="Arial" Font.Style="4" ParentFont="False" Text="Object Type"/>
+    </TfrxPageHeader>
+  </TfrxReportPage>
+</TfrxReport>
